@@ -13,6 +13,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>DepthVolt</title>
+<meta name="description" content="DepthVolt — bladeless subsea turbines that turn deep ocean currents into 24/7 baseload power.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>DepthVolt</title>
+<meta name="description" content="DepthVolt — bladeless subsea turbines that turn deep ocean currents into 24/7 baseload power.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Deliberately single-theme: the page is the deep ocean. All colors painted explicitly. */
 :root{
@@ -64,7 +74,9 @@ p{margin:0}
 /* HERO */
 .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(120% 90% at 70% 40%,#0B3442 0%,var(--deep) 38%,var(--abyss) 80%)}
 #flow{position:absolute;inset:0;width:100%;height:100%;display:block}
-.hero-inner{position:relative;display:grid;grid-template-columns:64px 1fr;gap:clamp(16px,3vw,40px);padding-block:clamp(56px,9vw,120px) clamp(40px,6vw,72px)}
+/* scrim keeps the flow field from competing with the headline */
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(2,10,16,.92) 0%,rgba(2,10,16,.75) 42%,rgba(2,10,16,0) 72%)}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:64px 1fr;gap:clamp(16px,3vw,40px);padding-block:clamp(56px,9vw,120px) clamp(40px,6vw,72px)}
 .depth{position:relative;border-left:1px solid var(--line-strong);font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;flex-direction:column;justify-content:space-between;padding-block:4px}
 .depth span{position:relative;padding-left:10px}
 .depth span::before{content:"";position:absolute;left:-1px;top:50%;width:6px;height:1px;background:var(--line-strong)}
@@ -82,7 +94,28 @@ p{margin:0}
 .live{display:inline-flex;align-items:center;gap:8px}
 .live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--volt);box-shadow:0 0 12px var(--volt);animation:pulse 1.6s infinite}
 @keyframes pulse{50%{opacity:.35}}
-@media (max-width:700px){.readout{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-inner{grid-template-columns:36px 1fr}.depth{font-size:9px}}
+@media (max-width:760px){
+  /* phone: the turbine field gets its own band under the content, never behind it */
+  .hero::after{background:linear-gradient(180deg,rgba(2,10,16,.94) 0%,rgba(2,10,16,.9) 58%,rgba(2,10,16,.25) 78%,rgba(2,10,16,0) 100%)}
+  .hero-inner{grid-template-columns:30px 1fr;gap:14px;padding-block:40px 200px}
+  .depth{font-size:9px}
+  .depth span{white-space:nowrap;padding-left:8px}
+  .depth span:nth-child(2),.depth span:nth-child(5){visibility:hidden}
+  .hero h1{font-size:clamp(34px,10vw,52px);max-width:none;line-height:1.02}
+  .hero .lede{margin-top:20px;font-size:16px}
+  .hero .cta{margin-top:24px}
+  .hero .cta .btn{flex:1 1 100%;justify-content:center}
+  .readout{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px;margin-top:32px}
+  .readout div{padding:14px 8px 0 0}
+  .readout dd{font-size:22px}
+  .nav .wrap{gap:12px}
+  .nav .btn{padding:10px 14px;font-size:11px}
+}
+@media (max-width:420px){
+  .hero-inner{padding-bottom:170px}
+  .logo{font-size:15px}
+  .nav .btn{padding:9px 12px;letter-spacing:.04em}
+}
 
 /* SECTIONS */
 section{padding-block:clamp(72px,10vw,140px);border-bottom:1px solid var(--line)}
@@ -138,6 +171,8 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .bar{height:4px;background:var(--line);margin-top:10px}
 .bar i{display:block;height:100%;background:var(--volt);box-shadow:0 0 12px rgba(255,181,71,.5);transition:width .2s}
 .note{font-size:12px;color:var(--faint);margin-top:18px}
+.swipe{display:none;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:10px}
+@media (max-width:760px){.swipe{display:block}}
 @media (max-width:860px){.console{grid-template-columns:1fr}}
 
 /* SCALE */
@@ -366,6 +401,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       </svg>
     </div>
 
+    <p class="swipe">Swipe the diagram sideways →</p>
+
     <div class="stages">
       <div class="stage"><div class="n">01 / Intake</div><h3>Ocean current enters</h3><p>A shaped inlet captures the steady deep-sea flow and accelerates it into the chamber — no dependency on tides or waves.</p></div>
       <div class="stage"><div class="n">02 / Induction</div><h3>Vortex generation</h3><p>Proprietary bladeless vortex induction converts linear flow into efficient rotation inside the enclosed core.</p></div>
@@ -437,6 +474,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <div class="proj"><div class="mw">5<small>MW</small></div><h3>Seychelles</h3><span class="chip plan">Planned</span></div>
       <div class="proj"><div class="mw">500<small>MW</small></div><h3>Congo-Brazzaville</h3><span class="chip plan">Planned</span></div>
     </div>
+    <p class="swipe">Swipe the chart sideways →</p>
   </div>
 </section>
 
@@ -505,13 +543,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <div>
         <p class="lede">Tell us where you need power and how much. We'll come back with a preliminary site assessment and indicative tariff.</p>
         <div class="cta" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
-          <a class="btn" href="mailto:yehuda@blastrenewables.com?subject=DepthVolt%20project%20enquiry">Request a site assessment</a>
+          <a class="btn" href="mailto:info@depthvolt.com?subject=DepthVolt%20project%20enquiry">Request a site assessment</a>
           <a class="btn ghost" href="tel:+6564012655">+65 6401 2655</a>
         </div>
       </div>
       <address>
         <div><b>Headquarters</b>3013 Bedok Industrial Park East<br>Singapore 489979</div>
-        <div><b>Email</b><a href="mailto:yehuda@blastrenewables.com">yehuda@blastrenewables.com</a></div>
+        <div><b>Email</b><a href="mailto:info@depthvolt.com">info@depthvolt.com</a></div>
         <div><b>Active markets</b>Southeast Asia · Mediterranean · Indian Ocean · Africa · Gulf</div>
       </address>
     </div>
@@ -537,9 +575,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     W = r.width; H = r.height;
     cv.width = W * dpr; cv.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const cx = W > 900 ? W * 0.74 : W * 0.7, cy = H * 0.52, g = Math.min(W, H) * 0.11;
+    const phone = W < 760;
+    // on phones the cluster sits in the empty band at the bottom of the hero
+    const cx = phone ? W * 0.5 : (W > 900 ? W * 0.74 : W * 0.7);
+    const cy = phone ? H - Math.min(110, H * 0.16) : H * 0.52;
+    const g = phone ? Math.min(W * 0.17, 62) : Math.min(W, H) * 0.11;
     vortices = [[cx - g, cy - g], [cx + g, cy - g], [cx - g, cy + g], [cx + g, cy + g]].map(([x, y]) => ({x, y, r: g * 0.95}));
-    const n = Math.round(Math.min(1400, W * H / 900));
+    const n = Math.round(Math.min(phone ? 420 : 1400, W * H / (phone ? 1600 : 900)));
     parts = Array.from({length: n}, () => spawn(true));
     ctx.fillStyle = '#020A10'; ctx.fillRect(0, 0, W, H);
   }
