@@ -23,6 +23,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>DepthVolt</title>
+<meta name="description" content="DepthVolt — bladeless subsea turbines that turn deep ocean currents into 24/7 baseload power.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<title>DepthVolt</title>
+<meta name="description" content="DepthVolt — bladeless subsea turbines that turn deep ocean currents into 24/7 baseload power.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Deliberately single-theme: the page is the deep ocean. All colors painted explicitly. */
 :root{
@@ -248,7 +258,33 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .contact address b{display:block;color:var(--faint);font-weight:400;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
 .contact address a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--line-strong)}
 .contact address a:hover{border-color:var(--current)}
-@media (max-width:760px){.contact-grid{grid-template-columns:1fr}}
+
+/* enquiry form */
+#enquiry{margin-top:30px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field.wide{grid-column:1/-1}
+.field label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select,.field textarea{
+  font-family:var(--body);font-size:15px;color:var(--text);background:rgba(2,10,16,.55);
+  border:1px solid var(--line-strong);border-radius:2px;padding:12px 13px;width:100%;
+  transition:border-color .15s,background .15s}
+.field textarea{resize:vertical;min-height:96px;line-height:1.5}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--current) 50%),linear-gradient(135deg,var(--current) 50%,transparent 50%);background-position:calc(100% - 18px) 55%,calc(100% - 12px) 55%;background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:38px}
+.field input::placeholder,.field textarea::placeholder{color:#496168}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--current);background:rgba(2,10,16,.85)}
+.field input:user-invalid,.field textarea:user-invalid{border-color:#E4735F}
+.consent{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:13.5px;color:var(--muted);max-width:62ch}
+.consent input{appearance:none;width:17px;height:17px;flex:none;margin-top:2px;border:1px solid var(--line-strong);border-radius:2px;background:rgba(2,10,16,.55);display:grid;place-content:center;cursor:pointer}
+.consent input:checked{background:var(--current);border-color:var(--current)}
+.consent input:checked::after{content:"";width:9px;height:5px;border-left:2px solid var(--abyss);border-bottom:2px solid var(--abyss);transform:rotate(-45deg) translate(1px,-1px)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-msg{margin-top:16px;font-size:14px;padding:12px 14px;border:1px solid var(--line-strong);background:rgba(2,10,16,.6)}
+.form-msg.ok{border-color:var(--current);color:var(--current)}
+.form-msg.bad{border-color:#E4735F;color:#E4735F}
+button.btn{font-family:var(--mono)}
+button.btn[disabled]{opacity:.55;cursor:progress}
+@media (max-width:760px){.contact-grid{grid-template-columns:1fr}.fields{grid-template-columns:1fr}#enquiry .cta .btn{flex:1 1 100%;justify-content:center}}
 footer{border-top:1px solid var(--line);padding-block:28px;font-family:var(--mono);font-size:12px;color:var(--faint)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
@@ -541,11 +577,66 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <h2 style="margin-top:18px">Let's map the current off <b>your</b> coast.</h2>
     <div class="contact-grid">
       <div>
-        <p class="lede">Tell us where you need power and how much. We'll come back with a preliminary site assessment and indicative tariff.</p>
-        <div class="cta" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
-          <a class="btn" href="mailto:info@depthvolt.com?subject=DepthVolt%20project%20enquiry">Request a site assessment</a>
-          <a class="btn ghost" href="tel:+6564012655">+65 6401 2655</a>
-        </div>
+        <p class="lede">Tell us where you need power and how much. We'll come back with a preliminary site assessment and indicative tariff within two working days.</p>
+
+        <form id="enquiry" novalidate>
+          <div class="fields">
+            <div class="field">
+              <label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Jane Okonkwo">
+            </div>
+            <div class="field">
+              <label for="f-role">Role</label>
+              <input id="f-role" name="role" type="text" autocomplete="organization-title" placeholder="Head of generation">
+            </div>
+            <div class="field">
+              <label for="f-org">Organisation</label>
+              <input id="f-org" name="organisation" type="text" autocomplete="organization" required placeholder="National Power Authority">
+            </div>
+            <div class="field">
+              <label for="f-email">Work email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="j.okonkwo@utility.gov">
+            </div>
+            <div class="field">
+              <label for="f-country">Country or site</label>
+              <input id="f-country" name="country" type="text" autocomplete="country-name" required placeholder="Maldives — Malé atoll">
+            </div>
+            <div class="field">
+              <label for="f-buyer">Buyer type</label>
+              <select id="f-buyer" name="buyer_type">
+                <option>Grid operator / utility</option>
+                <option>Government or ministry</option>
+                <option>Port or terminal</option>
+                <option>Desalination plant</option>
+                <option>Independent power producer</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field wide">
+              <label for="f-capacity">Capacity needed</label>
+              <select id="f-capacity" name="capacity">
+                <option>Under 1 MW</option>
+                <option>1–10 MW</option>
+                <option selected>10–100 MW</option>
+                <option>Over 100 MW</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="field wide">
+              <label for="f-msg">Anything else we should know</label>
+              <textarea id="f-msg" name="message" rows="4" placeholder="Timeline, current generation mix, tender reference…"></textarea>
+            </div>
+          </div>
+
+          <label class="consent"><input type="checkbox" id="f-consent" required> I agree that DepthVolt may use these details to respond to my enquiry.</label>
+          <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+
+          <div class="cta" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;align-items:center">
+            <button class="btn" type="submit" id="f-submit">Request a site assessment</button>
+            <a class="btn ghost" href="tel:+6564012655">+65 6401 2655</a>
+          </div>
+          <p class="form-msg" id="f-msg-out" role="status" aria-live="polite" hidden></p>
+        </form>
       </div>
       <address>
         <div><b>Headquarters</b>3013 Bedok Industrial Park East<br>Singapore 489979</div>
@@ -562,6 +653,48 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 </footer>
 
 <script>
+/* ── Formspree endpoint ───────────────────────────────────────────────
+   Replace FORM_ID with the ID Formspree gives you (Forms → your form →
+   the address looks like https://formspree.io/f/abcdwxyz).            */
+const FORMSPREE_ID = "mnpnqyvz";
+
+(() => {
+  const form = document.getElementById('enquiry');
+  const out = document.getElementById('f-msg-out');
+  const btn = document.getElementById('f-submit');
+  const say = (text, kind) => { out.textContent = text; out.className = 'form-msg ' + kind; out.hidden = false; };
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    if (FORMSPREE_ID === 'FORM_ID') {
+      say('The form is not connected yet. Please email info@depthvolt.com in the meantime.', 'bad');
+      return;
+    }
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+        method: 'POST',
+        headers: {'Accept': 'application/json'},
+        body: new FormData(form)
+      });
+      if (res.ok) {
+        form.querySelector('.fields').hidden = true;
+        form.querySelector('.consent').hidden = true;
+        btn.hidden = true;
+        say('Thank you — your enquiry is with us. We reply within two working days, from info@depthvolt.com.', 'ok');
+      } else {
+        const data = await res.json().catch(() => ({}));
+        say((data.errors?.[0]?.message) || 'Something went wrong. Please email info@depthvolt.com instead.', 'bad');
+        btn.disabled = false; btn.textContent = 'Request a site assessment';
+      }
+    } catch (err) {
+      say('No connection to the server. Please email info@depthvolt.com instead.', 'bad');
+      btn.disabled = false; btn.textContent = 'Request a site assessment';
+    }
+  });
+})();
+
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
