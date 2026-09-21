@@ -684,8 +684,11 @@ const FORMSPREE_ID = "mnpnqyvz";
         btn.hidden = true;
         say('Thank you — your enquiry is with us. We reply within two working days, from info@depthvolt.com.', 'ok');
       } else {
-        const data = await res.json().catch(() => ({}));
-        say((data.errors?.[0]?.message) || 'Something went wrong. Please email info@depthvolt.com instead.', 'bad');
+        const raw = await res.text().catch(() => '');
+        let data = {}; try { data = JSON.parse(raw); } catch (_) {}
+        const detail = data.errors?.[0]?.message || data.error || raw.slice(0, 160) || 'no detail';
+        console.log('[DepthVolt form] HTTP ' + res.status + ' - ' + raw);
+        say('Error ' + res.status + ': ' + detail + ' - please email info@depthvolt.com instead.', 'bad');
         btn.disabled = false; btn.textContent = 'Request a site assessment';
       }
     } catch (err) {
