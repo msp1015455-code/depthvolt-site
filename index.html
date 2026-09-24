@@ -92,7 +92,7 @@ p{margin:0}
   .hero-inner{grid-template-columns:30px 1fr;gap:14px;padding-block:40px 200px}
   .depth{font-size:9px}
   .depth span{white-space:nowrap;padding-left:8px}
-  .depth span:nth-child(2),.depth span:nth-child(5){visibility:hidden}
+  .depth span:nth-child(2){visibility:hidden}
   .hero h1{font-size:clamp(34px,10vw,52px);max-width:none;line-height:1.02}
   .hero .lede{margin-top:20px;font-size:16px}
   .hero .cta{margin-top:24px}
@@ -173,11 +173,11 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 /* CONTROL */
 .loop{border:1px solid var(--line);background:rgba(5,26,36,.6);overflow-x:auto}
 .loop svg{display:block;width:100%;min-width:680px;height:auto}
-.claims{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px}
+.claims{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px}
 .claims div{background:var(--abyss);padding:clamp(20px,3vw,32px)}
 .claims h3{font-size:20px;font-weight:500}
 .claims p{color:var(--muted);font-size:15px;margin-top:10px}
-@media (max-width:760px){.claims{grid-template-columns:1fr}}
+@media (max-width:1040px){.claims{grid-template-columns:1fr}}
 
 /* DEPLOYMENT */
 .deploy{border:1px solid var(--line);background:rgba(5,26,36,.6);overflow-x:auto}
@@ -239,6 +239,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .zero{font-family:var(--display);font-size:clamp(44px,6.5vw,88px);font-weight:700;line-height:.95;letter-spacing:-.03em}
 .zero span{display:block}
 .zero span:nth-child(2){color:var(--current)}
+.zero span.just{font-size:.42em;font-weight:300;letter-spacing:-.01em;color:var(--muted);margin-top:14px}
 .chain{list-style:none;margin:0;padding:0;display:grid;gap:0}
 .chain li{display:grid;grid-template-columns:48px 1fr;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
 .chain li:first-child{border-top:1px solid var(--line)}
@@ -262,8 +263,9 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 /* MARINE */
 .marine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
 .marine div{background:var(--abyss);padding:28px}
-.marine .k{font-family:var(--display);font-size:40px;font-weight:300;color:var(--current)}
-.marine p{color:var(--muted);font-size:15px;margin-top:8px}
+.marine .k{font-family:var(--display);font-size:40px;font-weight:300;color:var(--current);line-height:1}
+.marine .kl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text);margin-top:2px}
+.marine p{color:var(--muted);font-size:14.5px;margin-top:10px}
 @media (max-width:760px){.marine{grid-template-columns:1fr}}
 
 /* CONTACT */
@@ -326,7 +328,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <li><a href="#projects">Projects</a></li>
       <li><a href="#model">Partnership</a></li>
     </ul>
-    <a class="btn" href="#contact">Start a project</a>
+    <a class="btn" href="#contact">Request an assessment</a>
   </div>
 </nav>
 
@@ -334,21 +336,21 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   <canvas id="flow" aria-hidden="true"></canvas>
   <div class="wrap hero-inner">
     <div class="depth" aria-hidden="true">
-      <span>0 m</span><span>20 m</span><span>50 m</span><span class="on">80 m</span><span>120 m</span><span>150 m</span>
+      <span class="on">50 m</span><span>100 m</span><span>150 m</span>
     </div>
     <div>
       <div class="label">Subsea current energy · Baseload</div>
       <h1>The ocean <em>never</em> stops moving.</h1>
-      <p class="lede">DepthVolt places bladeless subsea turbines in steady deep-sea currents and delivers clean electricity around the clock — for national grids, ports and island nations, at utility scale.</p>
+      <p class="lede">DepthVolt harnesses steady deep-sea currents with bladeless subsea turbines, delivering clean, continuous power — 24/7, at utility scale for national grids, ports, islands and data centres.</p>
       <div class="cta">
-        <a class="btn" href="#technology">See how it works</a>
-        <a class="btn ghost" href="#projects">500+ MW pipeline</a>
+        <a class="btn" href="#technology">Explore the technology</a>
+        <a class="btn ghost" href="#projects">500+ MW in development</a>
       </div>
       <dl class="readout">
-        <div><dt>Output profile</dt><dd class="live">24/7</dd></div>
-        <div><dt>Current range</dt><dd>0.3–1.2<small>m/s</small></dd></div>
-        <div><dt>Install depth</dt><dd>20–150<small>m</small></dd></div>
-        <div><dt>Design life</dt><dd>20+<small>yrs</small></dd></div>
+        <div><dt>Continuous power</dt><dd class="live">24/7</dd></div>
+        <div><dt>Operating current range</dt><dd>0.3–1.2<small>m/s</small></dd></div>
+        <div><dt>Installation depth</dt><dd>≥50<small>m preferred</small></dd></div>
+        <div><dt>Target design life</dt><dd>25+<small>yrs</small></dd></div>
       </dl>
     </div>
   </div>
@@ -360,7 +362,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <div class="head">
       <div class="label">Why ocean currents</div>
       <h2>Renewable power without the gaps.</h2>
-      <p class="lede">Sun sets, wind drops, tides turn. Deep ocean currents flow in one direction, day and night — so the energy they carry needs no battery bank to back it up.</p>
+      <p class="lede">The sun sets. Wind fluctuates. Tides reverse. Deep-sea currents can provide persistent, predictable flow — day and night. DepthVolt harnesses this continuous movement to deliver reliable renewable power with significantly reduced dependence on large-scale battery storage.</p>
     </div>
     <div class="compare">
       <div class="src">
@@ -378,14 +380,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <div class="src">
         <h3>Tidal</h3>
         <svg viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 28 C25 4 25 4 50 28 S75 52 100 28 S125 4 150 28 S175 52 200 28" fill="none" stroke="#8BA8AB" stroke-width="1.5"/></svg>
-        <p>Predictable, but drops to zero at every slack tide.</p>
-        <span class="avail">Cyclic, ~4 slack periods / day</span>
+        <p>Predictable, but intermittent — output falls away at every slack tide.</p>
+        <span class="avail">Cyclic — typically ~4 slack periods per day</span>
       </div>
       <div class="src us">
         <h3>DepthVolt currents</h3>
         <svg viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 C40 10 80 14 120 11 S180 13 200 12 L200 56 L0 56Z" fill="rgba(70,217,204,.14)"/><path d="M0 12 C40 10 80 14 120 11 S180 13 200 12" fill="none" stroke="#46D9CC" stroke-width="2"/></svg>
-        <p>Steady one-way flow. Continuous generation, no battery storage.</p>
-        <span class="avail">Baseload · 24/7</span>
+        <p>Persistent, directional flow. Continuous 24/7 generation with minimal reliance on battery storage.</p>
+        <span class="avail">Baseload power · 24/7</span>
       </div>
     </div>
   </div>
@@ -464,35 +466,35 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
           <text x="470" y="104" fill="#E4F1F0" text-anchor="middle">② FLOW CONCENTRATED</text>
           <text x="416" y="240" fill="#FFB547" text-anchor="middle" font-size="11">THROAT</text>
           <text x="586" y="258" fill="#FFB547" text-anchor="middle">③ DIRECT-DRIVE GENERATOR</text>
-          <text x="806" y="264" fill="#FFB547" text-anchor="middle">TO SHORE / GRID →</text>
-          <text x="18" y="300" fill="#56727A">SEABED · 20–150 m</text>
+          <text x="770" y="246" fill="#FFB547" text-anchor="middle">TO SHORE / GRID →</text>
+          <text x="18" y="300" fill="#56727A">SEABED · 50–150 m</text>
         </g>
       </svg>
     </div>
 
-    <p class="diagcap">Cross-section, schematic. Proportions are illustrative.</p>
+    <p class="diagcap">Schematic cross-section. Proportions are illustrative.</p>
     <p class="swipe">Swipe the diagram sideways →</p>
 
-    <p class="thesis">High water volume drives the generator in less time, increasing energy density.</p>
+    <p class="thesis">High-volume flow is concentrated through the generator, increasing usable energy density at the conversion point.</p>
 
     <div class="stages">
-      <div class="stage"><div class="n">01 / Capture</div><h3>A large intake area</h3><p>The intake geometry admits a far greater volume of seawater than the swept area of a conventional rotor of the same rating — this, not the rotor, is where the advantage is created.</p></div>
-      <div class="stage"><div class="n">02 / Concentrate</div><h3>Flow is narrowed</h3><p>The housing converges toward the conversion section, raising the energy density of the flow that actually reaches the machine.</p></div>
-      <div class="stage"><div class="n">03 / Convert</div><h3>Direct-drive generator</h3><p>The enclosed rotor drives the generator directly, without a gearbox. No blades are exposed, and power is exported to shore by subsea cable.</p></div>
+      <div class="stage"><div class="n">01 / Capture</div><h3>A large intake area</h3><p>The intake admits a far greater volume of seawater than the swept area of a comparable conventional rotor. The advantage begins here — by capturing more of the available current and directing it into a controlled flow path.</p></div>
+      <div class="stage"><div class="n">02 / Concentrate</div><h3>Flow is concentrated</h3><p>The housing progressively narrows the captured flow towards the conversion section, increasing flow velocity and concentrating the available hydraulic energy through a smaller cross-sectional area.</p></div>
+      <div class="stage"><div class="n">03 / Convert</div><h3>Direct-drive generation</h3><p>The enclosed rotor drives the generator directly, eliminating the need for a gearbox. No rotating blades are exposed to the marine environment, and the generated power is transmitted to shore via subsea cable.</p></div>
     </div>
 
     <div class="console">
       <div>
-        <label for="spd">Current velocity at site</label>
+        <label for="spd">Site current velocity</label>
         <div class="speed"><span id="spdVal">0.9</span><small>m/s</small></div>
         <input id="spd" type="range" min="0.3" max="1.2" step="0.05" value="0.9" aria-describedby="spdNote">
         <div class="scale-ticks"><span>0.3</span><span>0.6</span><span>0.9</span><span>1.2 m/s</span></div>
-        <p class="note" id="spdNote">Kinetic power in a current rises with the cube of its speed. Figures are illustrative, scaled from the 250 kW rating at 1.2 m/s; site output is set by a resource survey.</p>
+        <p class="note" id="spdNote">Available kinetic power increases with the cube of current velocity. Figures are illustrative; actual output depends on site conditions, system configuration and validated resource-survey data.</p>
       </div>
       <div class="out">
         <div><dt>Per turbine</dt><dd><span id="oUnit">105</span><small>kW</small></dd><div class="bar"><i id="bUnit" style="width:42%"></i></div></div>
-        <div><dt>Per cluster · 4 × 250 kW</dt><dd><span id="oCl">0.42</span><small>MW</small></dd></div>
-        <div><dt>Per cluster · indicative net, per year</dt><dd><span id="oYr">3,300</span><small>MWh</small></dd></div>
+        <div><dt>Per cluster · 4 turbines</dt><dd><span id="oCl">0.42</span><small>MW</small></dd></div>
+        <div><dt>Indicative annual cluster output</dt><dd><span id="oYr">3,300</span><small>MWh/yr</small></dd></div>
       </div>
     </div>
   </div>
@@ -503,7 +505,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <div class="head">
       <div class="label">Control</div>
       <h2>The field follows demand, not the other way round.</h2>
-      <p class="lede">A closed loop measures electrical output and demand onshore and adjusts the effective water-flow volume inside each turbine in real time — carried over the submerged power cable that is already in place, with no separate communications link.</p>
+      <p class="lede">A closed-loop control system continuously monitors power output and onshore demand, adjusting the effective water flow through each turbine in real time. Data and control signals travel via Power Line Communication (PLC) over the existing subsea power cable — eliminating the need for a separate communications cable.</p>
     </div>
 
     <div class="loop" role="img" aria-label="Control loop: an onshore power meter sends demand data over RS-485 to a Power Line Communication module, which transmits it along the existing submerged power cable to a controller inside the subsea turbine; the controller adjusts water-flow volume and holds generator speed using RPM feedback.">
@@ -514,7 +516,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         </defs>
 
         <text x="20" y="28" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.6" fill="#56727A">ONSHORE</text>
-        <text x="880" y="28" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.6" fill="#56727A" text-anchor="end">SUBSEA · INSIDE THE TURBINE</text>
+        <text x="880" y="28" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.6" fill="#56727A" text-anchor="end">SUBSEA · TURBINE INTERNALS</text>
         <line x1="20" y1="38" x2="290" y2="38" stroke="rgba(120,220,215,.18)"/>
         <line x1="440" y1="38" x2="880" y2="38" stroke="rgba(120,220,215,.18)"/>
 
@@ -563,11 +565,15 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <div class="claims">
       <div>
         <h3>Follows demand in real time</h3>
-        <p>The controller adjusts the effective water-flow volume to match the power demand measured onshore, rather than generating flat out and shedding the surplus.</p>
+        <p>The controller continuously adjusts the effective water flow to match onshore power demand — generating what is needed rather than operating at full output and shedding surplus power.</p>
       </div>
       <div>
-        <h3>Holds nominal speed when the current accelerates</h3>
-        <p>The same loop watches generator RPM and regulates flow when ocean-current velocity rises, keeping the generator at its nominal operating speed.</p>
+        <h3>Maintains nominal speed as current velocity increases</h3>
+        <p>The control loop continuously monitors generator RPM and regulates water flow as ocean-current velocity changes, maintaining the generator within its nominal operating range.</p>
+      </div>
+      <div>
+        <h3>Smart monitoring and predictive maintenance</h3>
+        <p>The same data lets the system compare measured current conditions with expected energy output and identify abnormal performance degradation — a partial blockage or debris accumulation, for example. An automatic alert then recommends raising the unit for inspection and cleaning, reducing unplanned downtime.</p>
       </div>
     </div>
   </div>
@@ -578,7 +584,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <div class="head">
       <div class="label">Deployment</div>
       <h2>Held in the current. Raised to the surface.</h2>
-      <p class="lede">The deployment geometry is deliberately simple. The unit is held on anchor lines in the current about 50 m below the surface, and is raised to the surface for maintenance — so routine servicing does not require a deep-water intervention.</p>
+      <p class="lede">DepthVolt is secured by an engineered anchoring system at the selected operating depth, typically 50 m or deeper, based on site conditions. For inspection, cleaning and maintenance, the unit can be raised to the surface — minimising the need for routine deep-water intervention.</p>
     </div>
 
     <div class="deploy" role="img" aria-label="Deployment diagram: the generator is held on anchor lines about 50 metres below the sea surface, connected by a power transmission cable to a submerged cable on the ocean floor, and rises to the surface for maintenance.">
@@ -633,7 +639,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
           <path d="M532 34 L596 16 L596 62 L532 52 Z" fill="none" stroke="#8BA8AB" stroke-width="1.2" stroke-dasharray="4 4"/>
         </g>
         <path d="M600 150 L586 104" fill="none" stroke="#E4F1F0" stroke-width="1.4" marker-end="url(#arW)"/>
-        <text x="330" y="66" font-family="IBM Plex Mono, monospace" font-size="12" fill="#E4F1F0">RAISED FOR MAINTENANCE</text>
+        <text x="330" y="66" font-family="IBM Plex Mono, monospace" font-size="12" fill="#E4F1F0">RAISED TO SURFACE FOR MAINTENANCE</text>
       </svg>
     </div>
 
@@ -645,16 +651,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   <div class="wrap">
     <div class="head">
       <div class="label">The DepthVolt advantage</div>
-      <h2>Seven things a technical reviewer can check.</h2>
+      <h2>Seven engineering advantages, stated plainly.</h2>
     </div>
     <div class="adv">
-      <article><div class="n">01</div><h3>Persistent energy source</h3><p>Harnesses naturally occurring deep-sea currents.</p></article>
-      <article><div class="n">02</div><h3>High-volume flow capture</h3><p>Large intake geometry captures substantial seawater flow before concentrating it through the conversion section.</p></article>
+      <article><div class="n">01</div><h3>Persistent energy source</h3><p>Harnesses the continuous movement of naturally occurring deep-sea currents for reliable, around-the-clock power generation.</p></article>
+      <article><div class="n">02</div><h3>High-volume flow capture</h3><p>A large intake captures a substantial volume of seawater and channels it towards the conversion section for concentrated energy conversion.</p></article>
       <article><div class="n">03</div><h3>Bladeless turbine</h3><p>Designed to reduce direct interaction between rotating machinery and the surrounding marine environment.</p></article>
-      <article><div class="n">04</div><h3>Modular</h3><p>250 kW modules can be combined into 1 MW clusters and larger power installations.</p></article>
-      <article><div class="n">05</div><h3>Subsea</h3><p>Minimal use of valuable land and limited visual impact from shore.</p></article>
+      <article><div class="n">04</div><h3>Modular and scalable</h3><p>250 kW modules combine into 1 MW clusters, enabling scalable deployment from individual units to utility-scale installations.</p></article>
+      <article><div class="n">05</div><h3>Subsea</h3><p>Installed below the ocean surface, minimising land use and visual impact from shore.</p></article>
       <article><div class="n">06</div><h3>Predictable</h3><p>Deep-sea currents at properly selected sites can provide substantially more persistent generation than weather-dependent renewable sources.</p></article>
-      <article><div class="n">07</div><h3>Scalable</h3><p>From distributed island power to utility-scale offshore generation.</p></article>
+      <article><div class="n">07</div><h3>Scalable</h3><p>From distributed power for islands and remote communities to large-scale offshore generation for ports, data centres and national grids.</p></article>
     </div>
   </div>
 </section>
@@ -664,7 +670,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <div class="head">
       <div class="label">Scale</div>
       <h2>From one turbine to a national grid.</h2>
-      <p class="lede">A standard 250 kW unit groups into 1 MW clusters. Clusters repeat across a current corridor until the array matches the demand of a port, an island or a country.</p>
+      <p class="lede">Each 250 kW module combines into 1 MW clusters. Clusters can be replicated across suitable ocean-current corridors, scaling generation to match the energy needs of a port, an island, a data centre or a national grid.</p>
     </div>
     <div class="tabs" role="tablist" aria-label="Deployment scale">
       <button role="tab" id="t0" aria-selected="false" data-i="0">Unit</button>
@@ -679,9 +685,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <h3 id="sTitle">National baseload</h3>
         <p id="sText">A current-corridor field sized for a country's grid — the scale of the planned Congo-Brazzaville programme.</p>
         <dl>
-          <div><dt>Turbines</dt><dd id="sN">2,000</dd></div>
-          <div><dt>Theoretical maximum</dt><dd class="dim" id="sY">4.38 TWh</dd></div>
-          <div style="grid-column:1/-1"><dt>Indicative net generation · ~90% availability</dt><dd class="net" id="sNet">~3.9 TWh / year</dd></div>
+          <div><dt>No. of turbines</dt><dd id="sN">2,000</dd></div>
+          <div><dt>Maximum annual generation</dt><dd class="dim" id="sY">4.38 TWh / year</dd></div>
+          <div style="grid-column:1/-1"><dt>Indicative annual generation · 90% availability</dt><dd class="net" id="sNet">~3.94 TWh / year</dd></div>
         </dl>
       </div>
     </div>
@@ -689,11 +695,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <div class="basis">
       <div class="label">Basis of figures</div>
       <ul>
-        <li>Each unit is rated 250 kW at a current velocity of 1.2 m/s.</li>
-        <li>Kinetic power in a current rises with the cube of its speed.</li>
-        <li>Theoretical maximum assumes continuous operation: 8.76 GWh per MW per year.</li>
-        <li>Indicative net generation applies ~90% availability for planned maintenance: ~7.8 GWh per MW per year.</li>
-        <li>Figures are illustrative. Output at any site is set by a resource survey.</li>
+        <li>Each DepthVolt unit is rated at 250 kW, based on a design current velocity of 1.2 m/s.</li>
+        <li>Available kinetic power varies with the cube of current velocity.</li>
+        <li>Continuous operation at rated output corresponds to a maximum annual generation of 8.76 GWh per MW.</li>
+        <li>Applying ~90% availability for planned maintenance gives indicative annual generation of ~7.9 GWh per MW.</li>
+        <li>Figures are illustrative. Actual site output is determined by measured current conditions, system configuration and a detailed resource survey.</li>
       </ul>
     </div>
   </div>
@@ -704,7 +710,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <div class="head">
       <div class="label">Projects &amp; markets</div>
       <h2>520 MW across three continents.</h2>
-      <p class="lede">Operating capacity in Southeast Asia, projects in development in the Mediterranean and the Indian Ocean, and a national-scale programme in Central Africa. Next: the Maldives and Gulf ports.</p>
+      <p class="lede">Operational experience in Southeast Asia, with projects in development across the Mediterranean, Indian Ocean and Central Africa. The pipeline continues to expand into the Maldives, major ports and other high-demand coastal markets.</p>
     </div>
     <div class="map">
       <svg viewBox="0 0 1000 440" role="img" aria-label="Chart of project locations from the Mediterranean to the Philippines">
@@ -727,14 +733,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   <div class="wrap model">
     <div>
       <div class="label">Partnership model</div>
-      <p class="zero" style="margin-top:20px"><span>No CAPEX.</span><span>No OPEX.</span></p>
-      <p class="lede" style="margin-top:24px">We finance, build, operate and maintain every project. You buy the electricity — costs are covered through a monthly energy charge under a long-term power purchase agreement.</p>
+      <p class="zero" style="margin-top:20px"><span>No CAPEX.</span><span>No OPEX.</span><span class="just">Just clean power.</span></p>
+      <p class="lede" style="margin-top:24px">We finance, build, operate and maintain the entire project. You pay only for the electricity delivered, through an agreed energy tariff under a long-term power purchase agreement (PPA).</p>
     </div>
     <ol class="chain">
-      <li><span class="n">01</span><div><h3>Resource survey</h3><p>We map current speed, depth and seabed along your coastline and size the array to your demand.</p></div></li>
-      <li><span class="n">02</span><div><h3>Local project company</h3><p>A dedicated project company is formed in your country to hold the assets and sign the PPA with the utility or government.</p></div></li>
-      <li><span class="n">03</span><div><h3>Finance &amp; build</h3><p>DepthVolt funds manufacturing, installation and grid connection. No capital from the buyer.</p></div></li>
-      <li><span class="n">04</span><div><h3>Operate for 20+ years</h3><p>We run and maintain the field for its design life. You pay only for the energy delivered.</p></div></li>
+      <li><span class="n">01</span><div><h3>Resource survey</h3><p>We assess current velocity, water depth and seabed conditions to identify the optimal site and size the DepthVolt array to your power demand.</p></div></li>
+      <li><span class="n">02</span><div><h3>Local project company</h3><p>A dedicated local project company is established to own and operate the project assets and enter into the PPA with the utility, government or designated offtaker.</p></div></li>
+      <li><span class="n">03</span><div><h3>Finance &amp; build</h3><p>DepthVolt arranges project financing and manages manufacturing, installation and grid connection — with no upfront capital investment required from the power buyer.</p></div></li>
+      <li><span class="n">04</span><div><h3>Operate &amp; maintain</h3><p>We operate and maintain the DepthVolt field throughout the long-term PPA — you pay only for the electricity delivered.</p></div></li>
     </ol>
   </div>
 </section>
@@ -743,18 +749,18 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   <div class="wrap">
     <div class="head">
       <div class="label">Who we work with</div>
-      <h2>Built for buyers who plan in decades.</h2>
+      <h2>Built for energy buyers who plan in decades.</h2>
     </div>
     <div class="aud">
       <article>
         <h3>Governments &amp; ministries</h3>
-        <p>Energy security from a domestic, weather-independent resource — and a path off imported diesel.</p>
+        <p>Strengthen energy security with a domestic renewable resource that operates day and night — reducing dependence on imported fuels.</p>
         <ul><li>Island nations</li><li>National grid programmes</li><li>Coastal development zones</li></ul>
       </article>
       <article>
         <h3>Utilities &amp; IPPs</h3>
-        <p>Firm renewable capacity that behaves like baseload, contracted under a standard PPA.</p>
-        <ul><li>Grid operators</li><li>Independent power producers</li><li>Renewable portfolio targets</li></ul>
+        <p>Continuous, predictable renewable generation designed to provide baseload power under a long-term PPA.</p>
+        <ul><li>Grid operators</li><li>Independent power producers</li><li>Renewable energy portfolios</li></ul>
       </article>
       <article>
         <h3>Ports &amp; industry</h3>
@@ -770,12 +776,12 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <div class="head">
       <div class="label">Marine life</div>
       <h2>Designed to disappear into the sea.</h2>
-      <p class="lede">The rotating core sits inside the housing, so marine life never meets an open blade. Low acoustic output keeps the site quiet.</p>
+      <p class="lede">The rotating components are enclosed within the housing, eliminating exposed turbine blades and reducing direct interaction with marine life. The subsea design also minimises surface presence and visual impact.</p>
     </div>
     <div class="marine">
-      <div><div class="k">0</div><p>Exposed moving blades</p></div>
-      <div><div class="k">Low</div><p>Acoustic impact — quiet, continuous operation</p></div>
-      <div><div class="k">0 kg</div><p>Fuel burned on site — zero-emission generation</p></div>
+      <div><div class="k">0</div><div class="kl">No exposed moving blades</div><p>The rotating core is fully enclosed within the housing.</p></div>
+      <div><div class="k">Low</div><div class="kl">Low-noise operation</div><p>Continuous generation at low acoustic output.</p></div>
+      <div><div class="k">0 kg</div><div class="kl">No fuel combustion</div><p>Zero operational emissions at the site.</p></div>
     </div>
   </div>
 </section>
@@ -786,7 +792,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <h2 style="margin-top:18px">Let's map the current off <b>your</b> coast.</h2>
     <div class="contact-grid">
       <div>
-        <p class="lede">Tell us where you need power and how much. We'll come back with a preliminary site assessment and indicative tariff within two working days.</p>
+        <p class="lede">Tell us where you need power and how much. We'll assess the location and provide a preliminary site evaluation, proposed capacity and indicative energy tariff within two working days.</p>
 
         <form id="enquiry" novalidate>
           <div class="fields">
@@ -990,10 +996,10 @@ const FORMSPREE_ID = "mnpnqyvz";
 
   /* ---------- SCALE ---------- */
   const scales = [
-    {n: 1, mw: '0.25', unit: 'MW', title: 'Single turbine', text: 'The standard 250 kW building block, anchored to the seabed at 20–150 m.', y: '2.19 GWh', net: '~1.95 GWh / year'},
-    {n: 4, mw: '1', unit: 'MW', title: 'Cluster', text: 'Four units share one foundation and export cable — enough for a resort island or a desalination plant.', y: '8.76 GWh', net: '~7.8 GWh / year'},
-    {n: 48, mw: '12', unit: 'MW', title: 'Utility array', text: 'The size of our installed Philippines project — a port, a city district or an island grid.', y: '105 GWh', net: '~94 GWh / year'},
-    {n: 2000, mw: '500', unit: 'MW', title: 'National baseload', text: "A current-corridor field sized for a country's grid — the scale of the planned Congo-Brazzaville programme.", y: '4.38 TWh', net: '~3.9 TWh / year'}
+    {n: 1, mw: '0.25', unit: 'MW', title: 'Single turbine', text: 'The standard 250 kW building block, anchored to the seabed at 50–150 m.', y: '2.19 GWh / year', net: '~1.97 GWh / year'},
+    {n: 4, mw: '1', unit: 'MW', title: 'Cluster', text: 'Four units share one foundation and export cable — enough for a resort island or a desalination plant.', y: '8.76 GWh / year', net: '~7.9 GWh / year'},
+    {n: 48, mw: '12', unit: 'MW', title: 'Utility array', text: 'The size of our installed Philippines project — a port, a city district or an island grid.', y: '105 GWh / year', net: '~94.6 GWh / year'},
+    {n: 2000, mw: '500', unit: 'MW', title: 'National baseload', text: "A large-scale ocean-current field designed to deliver continuous power to a national grid — the scale envisioned for the Congo-Brazzaville programme.", y: '4.38 TWh / year', net: '~3.94 TWh / year'}
   ];
   const field = document.getElementById('field');
   const fx = field.getContext('2d');
