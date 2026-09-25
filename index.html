@@ -296,6 +296,7 @@ input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;bac
 .field.wide{grid-column:1/-1}
 .field label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .field input,.field select,.field textarea{
+  box-sizing:border-box;max-width:100%;
   font-family:var(--body);font-size:15px;color:var(--text);background:rgba(2,10,16,.55);
   border:1px solid var(--line-strong);border-radius:2px;padding:12px 13px;width:100%;
   transition:border-color .15s,background .15s}
