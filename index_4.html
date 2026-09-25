@@ -1,0 +1,1275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#020A10">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DepthVolt — 24/7 power from deep ocean currents">
+<meta property="og:description" content="Bladeless subsea turbines delivering baseload renewable electricity for utilities, governments and ports.">
+<meta property="og:url" content="https://depthvolt.tech/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%23020A10'/%3E%3Ccircle cx='14' cy='14' r='12' fill='none' stroke='%2346D9CC' stroke-width='1.5'/%3E%3Cpath d='M15.5 6 11 15h4l-2.5 7' fill='none' stroke='%23FFB547' stroke-width='2'/%3E%3C/svg%3E">
+<title>DepthVolt</title>
+<meta name="description" content="DepthVolt — bladeless subsea turbines that turn deep ocean currents into 24/7 baseload power.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;700&family=IBM+Plex+Sans:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Deliberately single-theme: the page is the deep ocean. All colors painted explicitly. */
+:root{
+  --abyss:#020A10;
+  --deep:#051A24;
+  --water:#0A2B38;
+  --line:rgba(120,220,215,.14);
+  --line-strong:rgba(120,220,215,.32);
+  --current:#46D9CC;      /* bioluminescent current */
+  --current-dim:#2A8F88;
+  --volt:#FFB547;         /* electrical output */
+  --text:#E4F1F0;
+  --muted:#8BA8AB;
+  --faint:#56727A;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gutter:clamp(16px,4vw,56px);
+  color-scheme:dark;
+}
+html{background:var(--abyss);scroll-behavior:smooth}
+body{background:var(--abyss);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--volt);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--gutter)}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--current)}
+.mono{font-family:var(--mono)}
+h1,h2,h3{font-family:var(--display);font-weight:500;text-wrap:balance;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(28px,4.2vw,52px);line-height:1.08}
+h3{font-size:18px;line-height:1.3}
+p{margin:0}
+.lede{font-size:clamp(17px,1.6vw,20px);color:var(--muted);max-width:60ch;font-weight:300}
+
+/* NAV */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(2,10,16,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:.02em;text-decoration:none}
+.logo svg{flex:none}
+.logo b{color:var(--volt);font-weight:700}
+.nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:14px;color:var(--muted)}
+.nav ul a{text-decoration:none;transition:color .2s}
+.nav ul a:hover{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:12px 20px;border:1px solid var(--current);color:var(--abyss);background:var(--current);border-radius:2px;transition:background .2s,color .2s;cursor:pointer}
+.btn:hover{background:transparent;color:var(--current)}
+.btn.ghost{background:transparent;color:var(--text);border-color:var(--line-strong)}
+.btn.ghost:hover{border-color:var(--current);color:var(--current)}
+@media (max-width:1140px){.nav ul{gap:18px;font-size:13px}}
+@media (max-width:860px){.nav ul{display:none}}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(120% 90% at 70% 40%,#0B3442 0%,var(--deep) 38%,var(--abyss) 80%)}
+#flow{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* scrim keeps the flow field from competing with the headline */
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(2,10,16,.92) 0%,rgba(2,10,16,.75) 42%,rgba(2,10,16,0) 72%)}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:64px 1fr;gap:clamp(16px,3vw,40px);padding-block:clamp(56px,9vw,120px) clamp(40px,6vw,72px)}
+.depth{position:relative;border-left:1px solid var(--line-strong);font-family:var(--mono);font-size:11px;color:var(--faint);display:flex;flex-direction:column;justify-content:space-between;padding-block:4px}
+.depth span{position:relative;padding-left:10px}
+.depth span::before{content:"";position:absolute;left:-1px;top:50%;width:6px;height:1px;background:var(--line-strong)}
+.depth span.on{color:var(--current)}
+.depth span.on::before{background:var(--current);width:12px}
+.hero h1{font-size:clamp(40px,7.6vw,104px);line-height:.98;font-weight:300;letter-spacing:-.03em;max-width:12ch;margin-top:18px}
+.hero h1 em{font-style:normal;font-weight:700;color:var(--current)}
+.hero .lede{margin-top:28px;color:#B5CCCD}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.readout{margin-top:clamp(40px,6vw,72px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line-strong);max-width:880px}
+.readout div{padding:16px 16px 0 0}
+.readout dt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.readout dd{margin:6px 0 0;font-family:var(--display);font-size:clamp(20px,2.4vw,30px);font-weight:500;font-variant-numeric:tabular-nums}
+.readout dd small{font-size:.5em;color:var(--muted);font-weight:300;margin-left:4px}
+.live{display:inline-flex;align-items:center;gap:8px}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--volt);box-shadow:0 0 12px var(--volt);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+@media (max-width:760px){
+  /* phone: the turbine field gets its own band under the content, never behind it */
+  .hero::after{background:linear-gradient(180deg,rgba(2,10,16,.94) 0%,rgba(2,10,16,.9) 58%,rgba(2,10,16,.25) 78%,rgba(2,10,16,0) 100%)}
+  .hero-inner{grid-template-columns:30px 1fr;gap:14px;padding-block:40px 200px}
+  .depth{font-size:9px}
+  .depth span{white-space:nowrap;padding-left:8px}
+  .depth span:nth-child(2),.depth span:nth-child(5){visibility:hidden}
+  .hero h1{font-size:clamp(34px,10vw,52px);max-width:none;line-height:1.02}
+  .hero .lede{margin-top:20px;font-size:16px}
+  .hero .cta{margin-top:24px}
+  .hero .cta .btn{flex:1 1 100%;justify-content:center}
+  .readout{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px;margin-top:32px}
+  .readout div{padding:14px 8px 0 0}
+  .readout dd{font-size:22px}
+  .nav .wrap{gap:12px}
+  .nav .btn{padding:10px 14px;font-size:11px}
+}
+@media (max-width:420px){
+  .hero-inner{padding-bottom:170px}
+  .logo{font-size:15px}
+  .nav .btn{padding:9px 12px;letter-spacing:.04em}
+}
+
+/* SECTIONS */
+section{padding-block:clamp(72px,10vw,140px);border-bottom:1px solid var(--line)}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px 64px;align-items:end;margin-bottom:clamp(40px,6vw,72px)}
+.head .label{grid-column:1/-1}
+@media (max-width:860px){.head{grid-template-columns:1fr}}
+
+/* WHY: baseload comparison */
+.compare{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.src{background:var(--abyss);padding:24px;display:flex;flex-direction:column;gap:14px}
+.src.us{background:linear-gradient(180deg,#0B2E38,var(--deep))}
+.src h3{font-size:15px}
+.src.us h3{color:var(--current)}
+.src svg{width:100%;height:56px;display:block}
+.src p{font-size:14px;color:var(--muted)}
+.src .avail{font-family:var(--mono);font-size:12px;color:var(--faint)}
+.src.us .avail{color:var(--volt)}
+@media (max-width:960px){.compare{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.compare{grid-template-columns:1fr}}
+
+/* TECH */
+.tech{background:linear-gradient(180deg,var(--abyss),var(--deep) 60%,var(--abyss))}
+.diagram{border:1px solid var(--line);background:rgba(5,26,36,.6);position:relative;overflow-x:auto}
+.diagram svg{display:block;width:100%;min-width:640px;height:auto}
+.diagram.live svg{min-width:880px}
+.dvSpin{transform-origin:600px 300px;animation:dvSpin 2.6s linear infinite}
+.dvSpin2{transform-origin:600px 300px;animation:dvSpin 4.4s linear infinite reverse}
+@keyframes dvSpin{to{transform:rotate(360deg)}}
+.dvPulse{animation:dvPulse 2.2s ease-in-out infinite}
+@keyframes dvPulse{0%,100%{opacity:.35}50%{opacity:1}}
+.dvCable{stroke-dasharray:3 16;animation:dvRun 1.15s linear infinite}
+@keyframes dvRun{to{stroke-dashoffset:-38}}
+.dvLed{animation:dvLed 1.6s ease-in-out infinite}
+.dvLed.b{animation-delay:-.8s}
+@keyframes dvLed{0%,100%{opacity:.25}50%{opacity:1}}
+.flowline{stroke-dasharray:6 10;animation:dash 1.4s linear infinite}
+.spin{transform-origin:450px 170px;animation:spin 3.2s linear infinite}
+.spin2{transform-origin:450px 170px;animation:spin 5s linear infinite reverse}
+@keyframes dash{to{stroke-dashoffset:-32}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stages{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin-top:40px}
+.stage{border-top:1px solid var(--line-strong);padding-top:18px}
+.stage .n{font-family:var(--mono);font-size:12px;color:var(--volt)}
+.stage h3{margin:8px 0 10px}
+.stage p{font-size:15px;color:var(--muted)}
+@media (max-width:760px){.stages{grid-template-columns:1fr}}
+
+.console{margin-top:clamp(48px,7vw,88px);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.console > div{background:var(--abyss);padding:clamp(20px,3vw,36px)}
+.console label{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.speed{font-family:var(--display);font-size:clamp(44px,6vw,72px);font-weight:300;line-height:1;margin:14px 0 22px;font-variant-numeric:tabular-nums}
+.speed small{font-size:.3em;color:var(--muted);margin-left:6px}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:28px;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:linear-gradient(90deg,var(--current) var(--p,50%),var(--line-strong) var(--p,50%))}
+input[type=range]::-moz-range-track{height:2px;background:var(--line-strong)}
+input[type=range]::-moz-range-progress{height:2px;background:var(--current)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-8px;border-radius:50%;background:var(--abyss);border:2px solid var(--current);box-shadow:0 0 16px rgba(70,217,204,.6)}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--abyss);border:2px solid var(--current)}
+.scale-ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:4px}
+.out{display:grid;gap:22px}
+.out dt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.out dd{margin:4px 0 0;font-family:var(--display);font-size:clamp(26px,3vw,36px);font-weight:500;color:var(--volt);font-variant-numeric:tabular-nums}
+.out dd small{font-size:.45em;color:var(--muted);font-weight:300;margin-left:6px}
+.bar{height:4px;background:var(--line);margin-top:10px}
+.bar i{display:block;height:100%;background:var(--volt);box-shadow:0 0 12px rgba(255,181,71,.5);transition:width .2s}
+.note{font-size:12px;color:var(--faint);margin-top:18px}
+.swipe{display:none;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:10px}
+@media (max-width:760px){.swipe{display:block}}
+@media (max-width:860px){.console{grid-template-columns:1fr}}
+
+.thesis{margin-top:clamp(28px,4vw,44px);font-family:var(--display);font-weight:300;font-size:clamp(20px,2.4vw,30px);line-height:1.35;letter-spacing:-.02em;color:var(--text);max-width:34ch;border-left:2px solid var(--current);padding-left:clamp(16px,2vw,28px)}
+.diagcap{margin-top:14px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--faint)}
+
+/* CONTROL */
+.loop{border:1px solid var(--line);background:rgba(5,26,36,.6);overflow-x:auto}
+.loop svg{display:block;width:100%;min-width:680px;height:auto}
+.claims{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:40px}
+.claims div{background:var(--abyss);padding:clamp(20px,3vw,32px)}
+.claims h3{font-size:20px;font-weight:500}
+.claims p{color:var(--muted);font-size:15px;margin-top:10px}
+@media (max-width:1040px){.claims{grid-template-columns:1fr}}
+
+/* DEPLOYMENT */
+.deploy{border:1px solid var(--line);background:rgba(5,26,36,.6);overflow-x:auto}
+.deploy svg{display:block;width:100%;min-width:660px;height:auto}
+
+/* ADVANTAGE */
+.adv{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.adv article{background:var(--abyss);padding:clamp(20px,2.4vw,30px);display:flex;flex-direction:column;gap:10px}
+.adv .n{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--current)}
+.adv h3{font-size:18px;font-weight:500;line-height:1.25}
+.adv p{color:var(--muted);font-size:14.5px;margin:0}
+.adv article:nth-child(7){grid-column:span 2}
+@media (max-width:1080px){.adv{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.adv{grid-template-columns:1fr}.adv article:nth-child(7){grid-column:span 1}}
+
+/* BASIS OF FIGURES */
+.basis{margin-top:clamp(32px,4vw,52px);border-top:1px solid var(--line);padding-top:22px}
+.basis ul{margin:14px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 40px}
+.basis li{font-size:14px;color:var(--muted);padding-left:18px;position:relative;line-height:1.5}
+.basis li::before{content:"—";position:absolute;left:0;color:var(--faint)}
+@media (max-width:760px){.basis ul{grid-template-columns:1fr}}
+
+/* SCALE */
+.tabs{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--line-strong);width:fit-content;max-width:100%}
+.tabs button{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--muted);border:0;border-right:1px solid var(--line-strong);padding:12px 18px;cursor:pointer}
+.tabs button:last-child{border-right:0}
+.tabs button[aria-selected=true]{background:var(--current);color:var(--abyss)}
+.scalebox{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);margin-top:28px;align-items:center}
+#field{width:100%;aspect-ratio:16/10;max-width:100%;display:block;border:1px solid var(--line);background:radial-gradient(circle at 50% 50%,#08293A,var(--abyss) 75%)}
+.scalestat .big{font-family:var(--display);font-size:clamp(56px,9vw,120px);font-weight:300;line-height:.9;letter-spacing:-.04em;color:var(--text);font-variant-numeric:tabular-nums}
+.scalestat .big span{color:var(--current);font-size:.35em;font-weight:500;letter-spacing:0;margin-left:8px}
+.scalestat h3{margin-top:22px;font-size:22px}
+.scalestat p{color:var(--muted);margin-top:10px}
+.scalestat dl{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0 0;border-top:1px solid var(--line);padding-top:18px}
+.scalestat dt{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.scalestat dd{margin:2px 0 0;font-family:var(--mono);font-size:16px;color:var(--text)}
+.scalestat dd.dim{color:var(--faint)}
+.scalestat dd.net{color:var(--current)}
+@media (max-width:860px){.scalebox{grid-template-columns:1fr}}
+
+/* MAP */
+.map{border:1px solid var(--line);background:var(--deep);overflow-x:auto}
+.map svg{display:block;width:100%;min-width:680px;height:auto}
+.ping{animation:ping 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes ping{0%{transform:scale(.4);opacity:.9}100%{transform:scale(3.2);opacity:0}}
+.projects{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-top:0}
+.proj{background:var(--abyss);padding:20px 22px}
+.proj .mw{font-family:var(--display);font-size:34px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1}
+.proj .mw small{font-size:.42em;color:var(--muted);font-weight:300;margin-left:4px}
+.proj h3{font-size:14px;margin-top:10px;font-family:var(--body);font-weight:500}
+.chip{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border:1px solid currentColor;border-radius:2px}
+.chip.op{color:var(--current)}
+.chip.dev{color:var(--volt)}
+.chip.plan{color:var(--muted)}
+@media (max-width:860px){.projects{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* MODEL */
+.model{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px);align-items:start}
+.zero{font-family:var(--display);font-size:clamp(44px,6.5vw,88px);font-weight:700;line-height:.95;letter-spacing:-.03em}
+.zero span{display:block}
+.zero span:nth-child(2){color:var(--current)}
+.zero span.just{font-size:.42em;font-weight:300;letter-spacing:-.01em;color:var(--muted);margin-top:14px}
+.chain{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.chain li{display:grid;grid-template-columns:48px 1fr;gap:16px;padding:22px 0;border-bottom:1px solid var(--line)}
+.chain li:first-child{border-top:1px solid var(--line)}
+.chain .n{font-family:var(--mono);font-size:12px;color:var(--volt);padding-top:3px}
+.chain h3{font-size:17px}
+.chain p{color:var(--muted);font-size:15px;margin-top:6px}
+@media (max-width:860px){.model{grid-template-columns:1fr}}
+
+/* AUDIENCE */
+.aud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,40px)}
+.aud article{padding-top:20px;border-top:2px solid var(--current)}
+.aud article:nth-child(2){border-color:var(--volt)}
+.aud article:nth-child(3){border-color:var(--text)}
+.aud h3{font-size:20px}
+.aud p{color:var(--muted);margin-top:12px;font-size:15px}
+.aud ul{margin:16px 0 0;padding:0;list-style:none;font-family:var(--mono);font-size:13px;color:var(--text)}
+.aud li{padding:8px 0;border-bottom:1px solid var(--line)}
+.aud li::before{content:"→ ";color:var(--current)}
+@media (max-width:860px){.aud{grid-template-columns:1fr}}
+
+/* MARINE */
+.marine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:8px}
+.marine div{background:var(--abyss);padding:28px}
+.marine .k{font-family:var(--display);font-size:40px;font-weight:300;color:var(--current);line-height:1}
+.marine .kl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text);margin-top:2px}
+.marine p{color:var(--muted);font-size:14.5px;margin-top:10px}
+@media (max-width:760px){.marine{grid-template-columns:1fr}}
+
+/* CONTACT */
+.contact{position:relative;overflow:hidden;background:radial-gradient(90% 120% at 50% 110%,#0C3A48,var(--abyss) 65%);border-bottom:0}
+.contact h2{font-size:clamp(34px,6vw,80px);font-weight:300;max-width:16ch}
+.contact h2 b{font-weight:700;color:var(--volt)}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;margin-top:48px;align-items:start}
+.contact address{font-style:normal;font-family:var(--mono);font-size:14px;color:var(--muted);display:grid;gap:14px}
+.contact address b{display:block;color:var(--faint);font-weight:400;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.contact address a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--line-strong)}
+.contact address a:hover{border-color:var(--current)}
+
+/* enquiry form */
+#enquiry{margin-top:30px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field.wide{grid-column:1/-1}
+.field label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.field input,.field select,.field textarea{
+  font-family:var(--body);font-size:15px;color:var(--text);background:rgba(2,10,16,.55);
+  border:1px solid var(--line-strong);border-radius:2px;padding:12px 13px;width:100%;
+  transition:border-color .15s,background .15s}
+.field textarea{resize:vertical;min-height:96px;line-height:1.5}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--current) 50%),linear-gradient(135deg,var(--current) 50%,transparent 50%);background-position:calc(100% - 18px) 55%,calc(100% - 12px) 55%;background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:38px}
+.field input::placeholder,.field textarea::placeholder{color:#496168}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--current);background:rgba(2,10,16,.85)}
+.field input:user-invalid,.field textarea:user-invalid{border-color:#E4735F}
+.consent{display:flex;gap:10px;align-items:flex-start;margin-top:18px;font-size:13.5px;color:var(--muted);max-width:62ch}
+.consent input{appearance:none;width:17px;height:17px;flex:none;margin-top:2px;border:1px solid var(--line-strong);border-radius:2px;background:rgba(2,10,16,.55);display:grid;place-content:center;cursor:pointer}
+.consent input:checked{background:var(--current);border-color:var(--current)}
+.consent input:checked::after{content:"";width:9px;height:5px;border-left:2px solid var(--abyss);border-bottom:2px solid var(--abyss);transform:rotate(-45deg) translate(1px,-1px)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-msg{margin-top:16px;font-size:14px;padding:12px 14px;border:1px solid var(--line-strong);background:rgba(2,10,16,.6)}
+.form-msg.ok{border-color:var(--current);color:var(--current)}
+.form-msg.bad{border-color:#E4735F;color:#E4735F}
+button.btn{font-family:var(--mono)}
+button.btn[disabled]{opacity:.55;cursor:progress}
+@media (max-width:760px){.contact-grid{grid-template-columns:1fr}.fields{grid-template-columns:1fr}#enquiry .cta .btn{flex:1 1 100%;justify-content:center}}
+footer{border-top:1px solid var(--line);padding-block:28px;font-family:var(--mono);font-size:12px;color:var(--faint)}
+footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+footer .social{display:inline-flex;align-items:center;gap:8px;color:var(--faint);text-decoration:none;letter-spacing:.06em;transition:color .2s}
+footer .social:hover{color:var(--current)}
+footer .social svg{flex:none}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="DepthVolt home">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.5" fill="none" stroke="#46D9CC" stroke-width="1.2"/><path d="M5 14c3-4 6-4 9 0s6 4 9 0" fill="none" stroke="#46D9CC" stroke-width="1.4"/><path d="M15.5 6 11 15h4l-2.5 7" fill="none" stroke="#FFB547" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      Depth<b>Volt</b>
+    </a>
+    <ul>
+      <li><a href="#technology">Technology</a></li>
+      <li><a href="#control">Control</a></li>
+      <li><a href="#deployment">Deployment</a></li>
+      <li><a href="#scale">Scale</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#model">Partnership</a></li>
+    </ul>
+    <a class="btn" href="#contact">Request an assessment</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="flow" aria-hidden="true"></canvas>
+  <div class="wrap hero-inner">
+    <div class="depth" aria-hidden="true">
+      <span class="on">50 m</span><span>70 m</span><span>90 m</span><span>110 m</span><span>130 m</span><span>150 m</span>
+    </div>
+    <div>
+      <div class="label">Subsea current energy · Baseload</div>
+      <h1>The ocean <em>never</em> stops moving.</h1>
+      <p class="lede">DepthVolt harnesses steady deep-sea currents with bladeless subsea turbines, delivering clean, continuous power — 24/7, at utility scale for national grids, ports, islands and data centres.</p>
+      <div class="cta">
+        <a class="btn" href="#technology">Explore the technology</a>
+        <a class="btn ghost" href="#projects">500+ MW in development</a>
+      </div>
+      <dl class="readout">
+        <div><dt>Continuous power</dt><dd class="live">24/7</dd></div>
+        <div><dt>Operating current range</dt><dd>0.3–1.2<small>m/s</small></dd></div>
+        <div><dt>Installation depth</dt><dd>≥50<small>m preferred</small></dd></div>
+        <div><dt>Target design life</dt><dd>25+<small>yrs</small></dd></div>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="why">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">Why ocean currents</div>
+      <h2>Renewable power without the gaps.</h2>
+      <p class="lede">The sun sets. Wind fluctuates. Tides reverse. Deep-sea currents can provide persistent, predictable flow — day and night. DepthVolt harnesses this continuous movement to deliver reliable renewable power with significantly reduced dependence on large-scale battery storage.</p>
+    </div>
+    <div class="compare">
+      <div class="src">
+        <h3>Solar</h3>
+        <svg viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 52 L40 52 C60 52 70 6 100 6 C130 6 140 52 160 52 L200 52" fill="rgba(139,168,171,.12)" stroke="#8BA8AB" stroke-width="1.5"/></svg>
+        <p>Daylight only. Requires a larger solar farm plus storage for evening peak demand.</p>
+        <span class="avail">Daytime generation</span>
+      </div>
+      <div class="src">
+        <h3>Wind</h3>
+        <svg viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 L15 22 L30 44 L48 12 L62 50 L80 30 L96 48 L112 18 L130 52 L150 26 L166 46 L184 20 L200 38" fill="none" stroke="#8BA8AB" stroke-width="1.5"/></svg>
+        <p>Weather-driven. Output swings hour to hour.</p>
+        <span class="avail">Variable</span>
+      </div>
+      <div class="src">
+        <h3>Tidal</h3>
+        <svg viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 28 C25 4 25 4 50 28 S75 52 100 28 S125 4 150 28 S175 52 200 28" fill="none" stroke="#8BA8AB" stroke-width="1.5"/></svg>
+        <p>Predictable, but intermittent — output falls away at every slack tide.</p>
+        <span class="avail">Cyclic — typically ~4 slack periods per day</span>
+      </div>
+      <div class="src us">
+        <h3>DepthVolt currents</h3>
+        <svg viewBox="0 0 200 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 12 C40 10 80 14 120 11 S180 13 200 12 L200 56 L0 56Z" fill="rgba(70,217,204,.14)"/><path d="M0 12 C40 10 80 14 120 11 S180 13 200 12" fill="none" stroke="#46D9CC" stroke-width="2"/></svg>
+        <p>Persistent, directional flow. Continuous 24/7 generation with minimal reliance on battery storage.</p>
+        <span class="avail">Baseload power · 24/7</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tech" id="technology">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">Technology</div>
+      <h2>No blades. A far larger slice of the current.</h2>
+      <p class="lede">DepthVolt does not claim to beat the power curve of a turbine. It changes the hydraulic boundary conditions the conversion mechanism sees: a large intake captures a much greater flow area, and the housing concentrates that flow before it reaches the generator.</p>
+    </div>
+
+    <div class="diagram live" role="img" aria-label="Animated cross-section: the ocean current enters a wide intake, accelerates through a narrowing throat, drives an enclosed direct-drive generator, and the power of four units is collected at a subsea junction and exported to shore.">
+      <svg viewBox="0 0 1240 640" role="img" aria-label="Animated cross-section: ocean current enters a wide intake, accelerates through a narrowing throat, drives an enclosed direct-drive generator, and power travels by subsea cable to a seabed junction box and on to shore.">
+      <defs>
+        <linearGradient id="dvHull" x1="0" x2="1"><stop offset="0" stop-color="#0E3746"/><stop offset="1" stop-color="#08222E"/></linearGradient>
+        <radialGradient id="dvCore"><stop offset="0" stop-color="#46D9CC" stop-opacity=".6"/><stop offset="1" stop-color="#46D9CC" stop-opacity="0"/></radialGradient>
+        <radialGradient id="dvGen"><stop offset="0" stop-color="#FFB547" stop-opacity=".55"/><stop offset="1" stop-color="#FFB547" stop-opacity="0"/></radialGradient>
+        <linearGradient id="dvFloor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0A2B38"/><stop offset="1" stop-color="#03131C"/></linearGradient>
+      </defs>
+
+      <!-- seabed -->
+      <path d="M0 586 C160 574 320 596 480 584 S820 572 1240 590 L1240 640 L0 640Z" fill="url(#dvFloor)"/>
+      <text x="24" y="624" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.4" fill="#3B565E">OCEAN FLOOR</text>
+
+      <!-- flow paths (particles ride these; the paths themselves are invisible) -->
+      <g id="paths" fill="none" stroke="none">
+        <path id="dvp0" d="M-40 104 C200 106 296 100 300 100 C400 142 470 214 520 254 C640 262 700 262 780 254 C900 232 1040 206 1280 196"/>
+        <path id="dvp1" d="M-40 158 C200 160 296 150 300 150 C400 182 470 234 520 266 C640 272 700 272 780 266 C900 250 1040 232 1280 224"/>
+        <path id="dvp2" d="M-40 212 C200 214 296 204 300 204 C400 224 470 256 520 280 C640 284 700 284 780 280 C900 270 1040 260 1280 254"/>
+        <path id="dvp3" d="M-40 266 C200 268 296 262 300 262 C400 272 470 288 520 294 C640 296 700 296 780 294 C900 290 1040 286 1280 284"/>
+        <path id="dvp4" d="M-40 320 C200 322 296 326 300 326 C400 322 470 312 520 306 C640 304 700 304 780 306 C900 310 1040 314 1280 316"/>
+        <path id="dvp5" d="M-40 374 C200 376 296 388 300 388 C400 372 470 340 520 320 C640 316 700 316 780 320 C900 330 1040 342 1280 348"/>
+        <path id="dvp6" d="M-40 428 C200 430 296 450 300 450 C400 420 470 368 520 332 C640 326 700 326 780 332 C900 350 1040 370 1280 380"/>
+        <path id="dvp7" d="M-40 482 C200 484 296 500 300 500 C400 462 470 392 520 346 C640 336 700 336 780 346 C900 370 1040 396 1280 410"/>
+        <path id="dvp8" d="M-40 46 C300 44 700 40 1280 44"/>
+        <path id="dvp9" d="M-40 552 C300 554 700 558 1280 552"/>
+        <path id="dvp10" d="M-40 570 C300 572 700 576 1280 570"/>
+      </g>
+
+      <!-- capture-area bracket -->
+      <g stroke="#46D9CC" stroke-width="1" opacity=".7">
+        <line x1="268" y1="96" x2="268" y2="504"/>
+        <line x1="259" y1="96" x2="277" y2="96"/>
+        <line x1="259" y1="504" x2="277" y2="504"/>
+      </g>
+      <text x="250" y="300" font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.2" fill="#46D9CC" text-anchor="middle" transform="rotate(-90 250 300)">CAPTURE AREA</text>
+
+      <!-- converging housing -->
+      <path d="M296 96 L520 248 L780 248 L780 352 L520 352 L296 504 Z" fill="url(#dvHull)" stroke="#2A8F88" stroke-width="1.3"/>
+
+      <!-- throat bracket -->
+      <g stroke="#FFB547" stroke-width="1" opacity=".85">
+        <line x1="536" y1="248" x2="536" y2="352"/>
+        <line x1="529" y1="248" x2="543" y2="248"/>
+        <line x1="529" y1="352" x2="543" y2="352"/>
+      </g>
+      <text x="536" y="376" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.2" fill="#FFB547" text-anchor="middle">THROAT</text>
+
+      <!-- flow streaks: above the hull so the cross-section reads, below the machinery -->
+      <g id="dvParts"></g>
+
+      <!-- conversion core -->
+      <circle cx="600" cy="300" r="62" fill="url(#dvCore)" class="dvPulse"/>
+      <g class="dvSpin" fill="none" stroke="#46D9CC" stroke-width="2" stroke-linecap="round">
+        <path d="M600 300 m0 -40 a40 40 0 0 1 40 40"/>
+        <path d="M600 300 m0 40 a40 40 0 0 1 -40 -40"/>
+        <path d="M600 300 m-23 -11 a25 25 0 0 1 36 -10"/>
+        <path d="M600 300 m23 11 a25 25 0 0 1 -36 10"/>
+      </g>
+      <g class="dvSpin2" fill="none" stroke="#46D9CC" stroke-width="1" opacity=".5">
+        <circle cx="600" cy="300" r="50" stroke-dasharray="4 9"/>
+      </g>
+      <circle cx="600" cy="300" r="5" fill="#E4F1F0"/>
+
+      <!-- shaft + generator -->
+      <line x1="605" y1="300" x2="690" y2="300" stroke="#8BA8AB" stroke-width="4"/>
+      <circle cx="722" cy="300" r="54" fill="url(#dvGen)" class="dvPulse"/>
+      <rect x="690" y="266" width="62" height="68" rx="4" fill="#0A2B38" stroke="#FFB547" stroke-width="1.6"/>
+      <path d="M726 278 L713 302 H724 L717 322" fill="none" stroke="#FFB547" stroke-width="2.4" stroke-linejoin="round"/>
+
+      <!-- pontoons -->
+      <rect x="326" y="512" width="470" height="19" rx="9.5" fill="#0E3746" stroke="#2A8F88" stroke-width="1"/>
+      <rect x="352" y="536" width="432" height="19" rx="9.5" fill="#0B2C3A" stroke="#2A8F88" stroke-width="1" opacity=".7"/>
+      <line x1="560" y1="352" x2="560" y2="514" stroke="#2A8F88" stroke-width="3"/>
+      <line x1="716" y1="352" x2="716" y2="514" stroke="#2A8F88" stroke-width="3"/>
+      <line x1="372" y1="452" x2="372" y2="514" stroke="#2A8F88" stroke-width="2.4"/>
+
+      <!-- mooring lines to anchor -->
+      <line x1="326" y1="522" x2="150" y2="592" stroke="#8BA8AB" stroke-width="1.5"/>
+      <line x1="352" y1="546" x2="150" y2="596" stroke="#8BA8AB" stroke-width="1.2" opacity=".65"/>
+      <rect x="112" y="576" width="46" height="18" rx="2" fill="#2A8F88"/>
+      <text x="135" y="612" font-family="IBM Plex Mono, monospace" font-size="11" fill="#8BA8AB" text-anchor="middle">ANCHOR</text>
+
+      <!-- export cable: generator -> junction box -->
+      <path d="M752 306 C822 330 840 420 884 468" fill="none" stroke="#3A2C12" stroke-width="4"/>
+      <path class="dvCable" d="M752 306 C822 330 840 420 884 468" fill="none" stroke="#FFB547" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- feeds from the neighbouring units, running along the floor -->
+      <path d="M-40 572 C300 570 640 566 862 536" fill="none" stroke="#3A2C12" stroke-width="3" opacity=".7"/>
+      <path class="dvCable" d="M-40 572 C300 570 640 566 862 536" fill="none" stroke="#FFB547" stroke-width="2" stroke-linecap="round" opacity=".45"/>
+      <path d="M-40 564 C300 562 640 556 862 522" fill="none" stroke="#3A2C12" stroke-width="3" opacity=".55"/>
+      <path class="dvCable" d="M-40 564 C300 562 640 556 862 522" fill="none" stroke="#FFB547" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+      <text x="470" y="608" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.3" fill="#3B565E">FROM ADJACENT UNITS →</text>
+
+      <!-- cluster junction: where the array's output is collected -->
+      <rect x="884" y="432" width="178" height="116" rx="4" fill="#0A2B38" stroke="#2A8F88" stroke-width="1.6"/>
+      <rect x="884" y="432" width="178" height="28" rx="4" fill="#0E3746"/>
+      <text x="898" y="451" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5" fill="#8BA8AB">CLUSTER JUNCTION</text>
+      <circle cx="1026" cy="446" r="3.6" fill="#46D9CC" class="dvLed"/>
+      <circle cx="1042" cy="446" r="3.6" fill="#FFB547" class="dvLed b"/>
+      <text x="898" y="486" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.4" fill="#56727A">COLLECTED · 4 UNITS</text>
+      <text id="dvCluster" x="898" y="518" font-family="Unbounded, sans-serif" font-size="26" font-weight="300" fill="#FFB547">0.60</text>
+      <text x="976" y="518" font-family="IBM Plex Mono, monospace" font-size="12" fill="#8BA8AB">MW</text>
+      <line x1="898" y1="530" x2="1048" y2="530" stroke="#2A8F88" stroke-width="1" opacity=".5"/>
+      <g fill="#46D9CC" opacity=".8">
+        <rect x="898" y="536" width="12" height="3" rx="1.5"/>
+        <rect x="914" y="536" width="12" height="3" rx="1.5"/>
+        <rect x="930" y="536" width="12" height="3" rx="1.5"/>
+        <rect x="946" y="536" width="12" height="3" rx="1.5"/>
+      </g>
+
+      <!-- aggregated export to shore -->
+      <path d="M1062 492 C1120 498 1170 510 1240 516" fill="none" stroke="#3A2C12" stroke-width="7"/>
+      <path class="dvCable" d="M1062 492 C1120 498 1170 510 1240 516" fill="none" stroke="#FFB547" stroke-width="5" stroke-linecap="round"/>
+      <text x="1076" y="552" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.1" fill="#FFB547">EXPORT TO SHORE →</text>
+
+      <!-- stage labels -->
+      <g font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.2">
+        <text x="26" y="40" fill="#46D9CC">① CURRENT IN · 0.3–1.2 m/s</text>
+        <text x="26" y="62" fill="#3B565E" font-size="11">OPEN OCEAN · ≥50 m</text>
+        <text x="536" y="222" fill="#E4F1F0" text-anchor="middle">② FLOW CONCENTRATED</text>
+        <text x="806" y="404" fill="#FFB547" text-anchor="end">③ DIRECT-DRIVE GENERATOR</text>
+      </g>
+
+
+
+    </svg>
+    </div>
+
+    <p class="diagcap">Schematic cross-section, driven by the velocity slider below. Proportions are illustrative.</p>
+    <p class="swipe">Swipe the diagram sideways →</p>
+
+    <p class="thesis">High-volume flow is concentrated through the generator, increasing usable energy density at the conversion point.</p>
+
+    <div class="stages">
+      <div class="stage"><div class="n">01 / Capture</div><h3>A large intake area</h3><p>The intake admits a far greater volume of seawater than the swept area of a comparable conventional rotor. The advantage begins here — by capturing more of the available current and directing it into a controlled flow path.</p></div>
+      <div class="stage"><div class="n">02 / Concentrate</div><h3>Flow is concentrated</h3><p>The housing progressively narrows the captured flow towards the conversion section, increasing flow velocity and concentrating the available hydraulic energy through a smaller cross-sectional area.</p></div>
+      <div class="stage"><div class="n">03 / Convert</div><h3>Direct-drive generation</h3><p>The enclosed rotor drives the generator directly, eliminating the need for a gearbox. No rotating blades are exposed to the marine environment, and the generated power is transmitted to shore via subsea cable.</p></div>
+    </div>
+
+    <div class="console">
+      <div>
+        <label for="spd">Site current velocity</label>
+        <div class="speed"><span id="spdVal">0.9</span><small>m/s</small></div>
+        <input id="spd" type="range" min="0.3" max="1.2" step="0.05" value="0.9" aria-describedby="spdNote">
+        <div class="scale-ticks"><span>0.3</span><span>0.6</span><span>0.9</span><span>1.2 m/s</span></div>
+        <p class="note" id="spdNote">Available kinetic power increases with the cube of current velocity. Figures are illustrative; actual output depends on site conditions, system configuration and validated resource-survey data.</p>
+      </div>
+      <div class="out">
+        <div><dt>Per turbine</dt><dd><span id="oUnit">105</span><small>kW</small></dd><div class="bar"><i id="bUnit" style="width:42%"></i></div></div>
+        <div><dt>Per cluster · 4 turbines</dt><dd><span id="oCl">0.42</span><small>MW</small></dd></div>
+        <div><dt>Indicative annual cluster output</dt><dd><span id="oYr">3,300</span><small>MWh/yr</small></dd></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="control">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">Control</div>
+      <h2>The field follows demand, not the other way round.</h2>
+      <p class="lede">A closed-loop control system continuously monitors power output and onshore demand, adjusting the effective water flow through each turbine in real time. Data and control signals travel via Power Line Communication (PLC) over the existing subsea power cable — eliminating the need for a separate communications cable.</p>
+    </div>
+
+    <div class="loop" role="img" aria-label="Control loop: an onshore power meter sends demand data over RS-485 to a Power Line Communication module, which transmits it along the existing submerged power cable to a controller inside the subsea turbine; the controller adjusts water-flow volume and holds generator speed using RPM feedback.">
+      <svg viewBox="0 0 900 300">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#46D9CC"/></marker>
+          <marker id="arV" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#FFB547"/></marker>
+        </defs>
+
+        <text x="20" y="28" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.6" fill="#56727A">ONSHORE</text>
+        <text x="880" y="28" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.6" fill="#56727A" text-anchor="end">SUBSEA · TURBINE INTERNALS</text>
+        <line x1="20" y1="38" x2="290" y2="38" stroke="rgba(120,220,215,.18)"/>
+        <line x1="440" y1="38" x2="880" y2="38" stroke="rgba(120,220,215,.18)"/>
+
+        <!-- power meter -->
+        <rect x="20" y="70" width="180" height="82" rx="3" fill="#0A2B38" stroke="#2A8F88"/>
+        <text x="110" y="102" font-family="IBM Plex Mono, monospace" font-size="12" fill="#E4F1F0" text-anchor="middle">POWER METER</text>
+        <text x="110" y="124" font-size="12" fill="#8BA8AB" text-anchor="middle" font-family="IBM Plex Sans, sans-serif">output + demand</text>
+        <text x="110" y="142" font-family="IBM Plex Mono, monospace" font-size="11" fill="#46D9CC" text-anchor="middle">RS-485</text>
+
+        <line x1="200" y1="111" x2="248" y2="111" stroke="#46D9CC" stroke-width="1.6" marker-end="url(#ar)"/>
+
+        <!-- PLC module -->
+        <rect x="256" y="70" width="170" height="82" rx="3" fill="#0A2B38" stroke="#46D9CC"/>
+        <text x="341" y="102" font-family="IBM Plex Mono, monospace" font-size="12" fill="#E4F1F0" text-anchor="middle">PLC MODULE</text>
+        <text x="341" y="124" font-size="12" fill="#8BA8AB" text-anchor="middle" font-family="IBM Plex Sans, sans-serif">DepthVolt proprietary</text>
+        <text x="341" y="142" font-family="IBM Plex Mono, monospace" font-size="11" fill="#46D9CC" text-anchor="middle">DATA → POWER LINE</text>
+
+        <!-- subsea cable -->
+        <path class="flowline" d="M426 111 C500 111 520 111 596 111" fill="none" stroke="#FFB547" stroke-width="2.4" marker-end="url(#arV)"/>
+        <text x="511" y="92" font-family="IBM Plex Mono, monospace" font-size="11" fill="#FFB547" text-anchor="middle">EXISTING SUBSEA CABLE</text>
+        <text x="511" y="136" font-size="12" fill="#8BA8AB" text-anchor="middle" font-family="IBM Plex Sans, sans-serif">power out · data in</text>
+
+        <!-- controller -->
+        <rect x="604" y="70" width="150" height="82" rx="3" fill="#0A2B38" stroke="#46D9CC"/>
+        <text x="679" y="104" font-family="IBM Plex Mono, monospace" font-size="12" fill="#E4F1F0" text-anchor="middle">CONTROLLER</text>
+        <text x="679" y="126" font-size="12" fill="#8BA8AB" text-anchor="middle" font-family="IBM Plex Sans, sans-serif">closed loop</text>
+
+        <!-- down to flow control -->
+        <line x1="679" y1="152" x2="679" y2="196" stroke="#46D9CC" stroke-width="1.6" marker-end="url(#ar)"/>
+        <rect x="574" y="204" width="210" height="76" rx="3" fill="#0A2B38" stroke="#2A8F88"/>
+        <text x="679" y="234" font-family="IBM Plex Mono, monospace" font-size="12" fill="#E4F1F0" text-anchor="middle">FLOW-CONTROL MECHANISM</text>
+        <text x="679" y="256" font-size="12" fill="#8BA8AB" text-anchor="middle" font-family="IBM Plex Sans, sans-serif">sets effective water volume</text>
+
+        <!-- generator + rpm feedback -->
+        <rect x="806" y="204" width="74" height="76" rx="3" fill="#0A2B38" stroke="#FFB547"/>
+        <text x="843" y="238" font-family="IBM Plex Mono, monospace" font-size="11" fill="#FFB547" text-anchor="middle">GEN</text>
+        <text x="843" y="256" font-family="IBM Plex Mono, monospace" font-size="11" fill="#FFB547" text-anchor="middle">RPM</text>
+        <line x1="784" y1="242" x2="800" y2="242" stroke="#2A8F88" stroke-width="1.6"/>
+        <path d="M843 204 L843 180 L820 180" fill="none" stroke="#46D9CC" stroke-width="1.4" stroke-dasharray="4 4" marker-end="url(#ar)"/>
+        <text x="812" y="174" font-family="IBM Plex Mono, monospace" font-size="11" fill="#46D9CC" text-anchor="end">RPM FEEDBACK</text>
+      </svg>
+    </div>
+
+    <p class="swipe">Swipe the diagram sideways →</p>
+
+    <div class="claims">
+      <div>
+        <h3>Follows demand in real time</h3>
+        <p>The controller continuously adjusts the effective water flow to match onshore power demand — generating what is needed rather than operating at full output and shedding surplus power.</p>
+      </div>
+      <div>
+        <h3>Maintains nominal speed as current velocity increases</h3>
+        <p>The control loop continuously monitors generator RPM and regulates water flow as ocean-current velocity changes, maintaining the generator within its nominal operating range.</p>
+      </div>
+      <div>
+        <h3>Smart monitoring and predictive maintenance</h3>
+        <p>The same data lets the system compare measured current conditions with expected energy output and identify abnormal performance degradation — a partial blockage or debris accumulation, for example. An automatic alert then recommends raising the unit for inspection and cleaning, reducing unplanned downtime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="deployment">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">Deployment</div>
+      <h2>Held in the current. Raised to the surface.</h2>
+      <p class="lede">DepthVolt is secured by an engineered anchoring system at the selected operating depth, typically 50 m or deeper, based on site conditions. For inspection, cleaning and maintenance, the unit can be raised to the surface — minimising the need for routine deep-water intervention.</p>
+    </div>
+
+    <div class="deploy" role="img" aria-label="Deployment diagram: the generator is held on anchor lines about 50 metres below the sea surface, connected by a power transmission cable to a submerged cable on the ocean floor, and rises to the surface for maintenance.">
+      <svg viewBox="0 0 900 380">
+        <defs>
+          <linearGradient id="col" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0A3040"/><stop offset="1" stop-color="#03131C"/></linearGradient>
+          <marker id="arW" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#E4F1F0"/></marker>
+        </defs>
+        <rect x="0" y="0" width="900" height="380" fill="url(#col)"/>
+        <!-- sea surface -->
+        <path class="flowline" d="M0 44 C60 38 120 50 180 44 S300 38 360 44 S480 50 540 44 S660 38 720 44 S840 50 900 44" fill="none" stroke="#46D9CC" stroke-width="1.6" opacity=".8"/>
+        <text x="18" y="30" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.4" fill="#8BA8AB">SEA SURFACE</text>
+        <!-- ocean floor -->
+        <path d="M0 336 C140 328 260 344 400 336 S700 328 900 340 L900 380 L0 380Z" fill="#06202A"/>
+        <text x="18" y="366" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.4" fill="#56727A">OCEAN FLOOR</text>
+        <!-- current arrows -->
+        <g stroke="#46D9CC" stroke-width="1.4" fill="none" opacity=".45">
+          <path class="flowline" d="M10 120 L230 120"/>
+          <path class="flowline" d="M10 186 L210 186" style="animation-delay:-.5s"/>
+          <path class="flowline" d="M10 252 L250 252" style="animation-delay:-.9s"/>
+        </g>
+        <text x="20" y="108" font-family="IBM Plex Mono, monospace" font-size="12" fill="#46D9CC">OCEAN CURRENT →</text>
+        <!-- anchor -->
+        <rect x="286" y="316" width="46" height="20" fill="#2A8F88"/>
+        <text x="309" y="356" font-family="IBM Plex Mono, monospace" font-size="11" fill="#8BA8AB" text-anchor="middle">ANCHOR</text>
+        <!-- anchor lines -->
+        <line x1="309" y1="316" x2="612" y2="196" stroke="#8BA8AB" stroke-width="1.6"/>
+        <line x1="309" y1="316" x2="560" y2="96" stroke="#8BA8AB" stroke-width="1.2" stroke-dasharray="5 6" opacity=".55"/>
+        <text x="366" y="252" font-family="IBM Plex Mono, monospace" font-size="11" fill="#8BA8AB">ANCHOR LINES</text>
+        <!-- power cable to seabed -->
+        <path class="flowline" d="M612 206 C520 250 430 300 340 330 L900 330" fill="none" stroke="#FFB547" stroke-width="2"/>
+        <text x="700" y="318" font-family="IBM Plex Mono, monospace" font-size="11" fill="#FFB547">SUBMERGED CABLE → SHORE</text>
+        <!-- unit at depth -->
+        <g>
+          <rect x="586" y="188" width="104" height="14" rx="7" fill="#12485A" stroke="#2A8F88"/>
+          <path d="M612 150 L676 132 L676 178 L612 168 Z" fill="#0E3746" stroke="#46D9CC" stroke-width="1.4"/>
+          <line x1="624" y1="168" x2="620" y2="188" stroke="#2A8F88" stroke-width="2"/>
+          <line x1="668" y1="172" x2="664" y2="188" stroke="#2A8F88" stroke-width="2"/>
+          <circle cx="676" cy="155" r="4" fill="#FFB547"/>
+        </g>
+        <text x="706" y="160" font-family="IBM Plex Mono, monospace" font-size="12" fill="#E4F1F0">OCEAN CURRENT GENERATOR</text>
+        <!-- depth measure -->
+        <g stroke="#8BA8AB" stroke-width="1" opacity=".8">
+          <line x1="780" y1="46" x2="780" y2="186"/>
+          <line x1="773" y1="46" x2="787" y2="46"/>
+          <line x1="773" y1="186" x2="787" y2="186"/>
+        </g>
+        <text x="796" y="120" font-family="IBM Plex Mono, monospace" font-size="12" fill="#8BA8AB">≈50 m</text>
+        <!-- ghost unit at surface -->
+        <g opacity=".42">
+          <rect x="506" y="72" width="104" height="14" rx="7" fill="#12485A" stroke="#2A8F88" stroke-dasharray="4 4"/>
+          <path d="M532 34 L596 16 L596 62 L532 52 Z" fill="none" stroke="#8BA8AB" stroke-width="1.2" stroke-dasharray="4 4"/>
+        </g>
+        <path d="M600 150 L586 104" fill="none" stroke="#E4F1F0" stroke-width="1.4" marker-end="url(#arW)"/>
+        <text x="330" y="66" font-family="IBM Plex Mono, monospace" font-size="12" fill="#E4F1F0">RAISED TO SURFACE FOR MAINTENANCE</text>
+      </svg>
+    </div>
+
+    <p class="swipe">Swipe the diagram sideways →</p>
+  </div>
+</section>
+
+<section id="advantage">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">The DepthVolt advantage</div>
+      <h2>Seven engineering advantages, stated plainly.</h2>
+    </div>
+    <div class="adv">
+      <article><div class="n">01</div><h3>Persistent energy source</h3><p>Harnesses the continuous movement of naturally occurring deep-sea currents for reliable, around-the-clock power generation.</p></article>
+      <article><div class="n">02</div><h3>High-volume flow capture</h3><p>A large intake captures a substantial volume of seawater and channels it towards the conversion section for concentrated energy conversion.</p></article>
+      <article><div class="n">03</div><h3>Bladeless turbine</h3><p>Designed to reduce direct interaction between rotating machinery and the surrounding marine environment.</p></article>
+      <article><div class="n">04</div><h3>Modular and scalable</h3><p>250 kW modules combine into 1 MW clusters, enabling scalable deployment from individual units to utility-scale installations.</p></article>
+      <article><div class="n">05</div><h3>Subsea</h3><p>Installed below the ocean surface, minimising land use and visual impact from shore.</p></article>
+      <article><div class="n">06</div><h3>Predictable</h3><p>Deep-sea currents at properly selected sites can provide substantially more persistent generation than weather-dependent renewable sources.</p></article>
+      <article><div class="n">07</div><h3>Scalable</h3><p>From distributed power for islands and remote communities to large-scale offshore generation for ports, data centres and national grids.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="scale">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">Scale</div>
+      <h2>From one turbine to a national grid.</h2>
+      <p class="lede">Each 250 kW module combines into 1 MW clusters. Clusters can be replicated across suitable ocean-current corridors, scaling generation to match the energy needs of a port, an island, a data centre or a national grid.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Deployment scale">
+      <button role="tab" id="t0" aria-selected="false" data-i="0">Unit</button>
+      <button role="tab" id="t1" aria-selected="false" data-i="1">Cluster</button>
+      <button role="tab" id="t2" aria-selected="false" data-i="2">Array</button>
+      <button role="tab" id="t3" aria-selected="true" data-i="3">National</button>
+    </div>
+    <div class="scalebox">
+      <canvas id="field" aria-label="Plan view of turbines in the selected deployment" role="img"></canvas>
+      <div class="scalestat" aria-live="polite">
+        <div class="big" id="bigMW">500<span>MW</span></div>
+        <h3 id="sTitle">National baseload</h3>
+        <p id="sText">A current-corridor field sized for a country's grid — the scale of the planned Congo-Brazzaville programme.</p>
+        <dl>
+          <div><dt>No. of turbines</dt><dd id="sN">2,000</dd></div>
+          <div><dt>Maximum annual generation</dt><dd class="dim" id="sY">4.38 TWh / year</dd></div>
+          <div style="grid-column:1/-1"><dt>Indicative annual generation · 90% availability</dt><dd class="net" id="sNet">~3.94 TWh / year</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="basis">
+      <div class="label">Basis of figures</div>
+      <ul>
+        <li>Each DepthVolt unit is rated at 250 kW, based on a design current velocity of 1.2 m/s.</li>
+        <li>Available kinetic power varies with the cube of current velocity.</li>
+        <li>Continuous operation at rated output corresponds to a maximum annual generation of 8.76 GWh per MW.</li>
+        <li>Applying ~90% availability for planned maintenance gives indicative annual generation of ~7.9 GWh per MW.</li>
+        <li>Figures are illustrative. Actual site output is determined by measured current conditions, system configuration and a detailed resource survey.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">Projects &amp; markets</div>
+      <h2>520 MW across three continents.</h2>
+      <p class="lede">Operational experience in Southeast Asia, with projects in development across the Mediterranean, Indian Ocean and Central Africa. The pipeline continues to expand into the Maldives, major ports and other high-demand coastal markets.</p>
+    </div>
+    <div class="map">
+      <svg viewBox="0 0 1000 440" role="img" aria-label="Chart of project locations from the Mediterranean to the Philippines">
+        <g id="grat" stroke="rgba(120,220,215,.10)" stroke-width="1"></g>
+        <g id="gratLabels" font-family="IBM Plex Mono, monospace" font-size="10" fill="#56727A"></g>
+        <g id="pins" font-family="IBM Plex Mono, monospace" font-size="12"></g>
+      </svg>
+    </div>
+    <div class="projects">
+      <div class="proj"><div class="mw">12<small>MW</small></div><h3>Philippines</h3><span class="chip op">Installed</span></div>
+      <div class="proj"><div class="mw">3<small>MW</small></div><h3>Malta</h3><span class="chip dev">In development</span></div>
+      <div class="proj"><div class="mw">5<small>MW</small></div><h3>Seychelles</h3><span class="chip plan">Planned</span></div>
+      <div class="proj"><div class="mw">500<small>MW</small></div><h3>Congo-Brazzaville</h3><span class="chip plan">Planned</span></div>
+    </div>
+    <p class="swipe">Swipe the chart sideways →</p>
+  </div>
+</section>
+
+<section id="model">
+  <div class="wrap model">
+    <div>
+      <div class="label">Partnership model</div>
+      <p class="zero" style="margin-top:20px"><span>No CAPEX.</span><span>No OPEX.</span><span class="just">Just clean power.</span></p>
+      <p class="lede" style="margin-top:24px">We finance, build, operate and maintain the entire project. You pay only for the electricity delivered, through an agreed energy tariff under a long-term power purchase agreement (PPA).</p>
+    </div>
+    <ol class="chain">
+      <li><span class="n">01</span><div><h3>Resource survey</h3><p>We assess current velocity, water depth and seabed conditions to identify the optimal site and size the DepthVolt array to your power demand.</p></div></li>
+      <li><span class="n">02</span><div><h3>Local project company</h3><p>A dedicated local project company is established to own and operate the project assets and enter into the PPA with the utility, government or designated offtaker.</p></div></li>
+      <li><span class="n">03</span><div><h3>Finance &amp; build</h3><p>DepthVolt arranges project financing and manages manufacturing, installation and grid connection — with no upfront capital investment required from the power buyer.</p></div></li>
+      <li><span class="n">04</span><div><h3>Operate &amp; maintain</h3><p>We operate and maintain the DepthVolt field throughout the long-term PPA — you pay only for the electricity delivered.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="who">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">Who we work with</div>
+      <h2>Built for energy buyers who plan in decades.</h2>
+    </div>
+    <div class="aud">
+      <article>
+        <h3>Governments &amp; ministries</h3>
+        <p>Strengthen energy security with a domestic renewable resource that operates day and night — reducing dependence on imported fuels.</p>
+        <ul><li>Island nations</li><li>National grid programmes</li><li>Coastal development zones</li></ul>
+      </article>
+      <article>
+        <h3>Utilities &amp; IPPs</h3>
+        <p>Continuous, predictable renewable generation designed to provide baseload power under a long-term PPA.</p>
+        <ul><li>Grid operators</li><li>Independent power producers</li><li>Renewable energy portfolios</li></ul>
+      </article>
+      <article>
+        <h3>Ports &amp; industry</h3>
+        <p>Power produced right next to the load, around the clock.</p>
+        <ul><li>Ports &amp; terminals</li><li>Desalination — up to 90% less diesel</li><li>Coastal industrial sites</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="marine">
+  <div class="wrap">
+    <div class="head">
+      <div class="label">Marine life</div>
+      <h2>Designed to disappear into the sea.</h2>
+      <p class="lede">The rotating components are enclosed within the housing, eliminating exposed turbine blades and reducing direct interaction with marine life. The subsea design also minimises surface presence and visual impact.</p>
+    </div>
+    <div class="marine">
+      <div><div class="k">0</div><div class="kl">No exposed moving blades</div><p>The rotating core is fully enclosed within the housing.</p></div>
+      <div><div class="k">Low</div><div class="kl">Low-noise operation</div><p>Continuous generation at low acoustic output.</p></div>
+      <div><div class="k">0 kg</div><div class="kl">No fuel combustion</div><p>Zero operational emissions at the site.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="label">Contact</div>
+    <h2 style="margin-top:18px">Let's map the current off <b>your</b> coast.</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="lede">Tell us where you need power and how much. We'll assess the location and provide a preliminary site evaluation, proposed capacity and indicative energy tariff within two working days.</p>
+
+        <form id="enquiry" novalidate>
+          <div class="fields">
+            <div class="field">
+              <label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Jane Okonkwo">
+            </div>
+            <div class="field">
+              <label for="f-role">Role</label>
+              <input id="f-role" name="role" type="text" autocomplete="organization-title" placeholder="Head of generation">
+            </div>
+            <div class="field">
+              <label for="f-org">Organisation</label>
+              <input id="f-org" name="organisation" type="text" autocomplete="organization" required placeholder="National Power Authority">
+            </div>
+            <div class="field">
+              <label for="f-email">Work email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="j.okonkwo@utility.gov">
+            </div>
+            <div class="field">
+              <label for="f-country">Country or site</label>
+              <input id="f-country" name="country" type="text" autocomplete="country-name" required placeholder="Maldives — Malé atoll">
+            </div>
+            <div class="field">
+              <label for="f-buyer">Buyer type</label>
+              <select id="f-buyer" name="buyer_type">
+                <option>Grid operator / utility</option>
+                <option>Government or ministry</option>
+                <option>Port or terminal</option>
+                <option>Desalination plant</option>
+                <option>Independent power producer</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field wide">
+              <label for="f-capacity">Capacity needed</label>
+              <select id="f-capacity" name="capacity">
+                <option>Under 1 MW</option>
+                <option>1–10 MW</option>
+                <option selected>10–100 MW</option>
+                <option>Over 100 MW</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="field wide">
+              <label for="f-msg">Anything else we should know</label>
+              <textarea id="f-msg" name="message" rows="4" placeholder="Timeline, current generation mix, tender reference…"></textarea>
+            </div>
+          </div>
+
+          <label class="consent"><input type="checkbox" id="f-consent" required> I agree that DepthVolt may use these details to respond to my enquiry.</label>
+          <div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+
+          <div class="cta" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;align-items:center">
+            <button class="btn" type="submit" id="f-submit">Request a site assessment</button>
+          </div>
+          <p class="form-msg" id="f-msg-out" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+      <address>
+        <div><b>Headquarters</b>3013 Bedok Industrial Park East<br>Singapore 489979</div>
+        <div><b>Email</b><a href="mailto:info@depthvolt.com">info@depthvolt.com</a></div>
+        <div><b>Active markets</b>Southeast Asia · Mediterranean · Indian Ocean · Africa · Gulf</div>
+      </address>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 DepthVolt</span><span>Subsea current energy · 1°18′N 103°55′E</span><a class="social" href="https://www.linkedin.com/company/depthvolt" target="_blank" rel="noopener" aria-label="DepthVolt on LinkedIn"><svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><rect x=".65" y=".65" width="14.7" height="14.7" rx="3.2" fill="none" stroke="currentColor" stroke-width="1.1"/><circle cx="4.5" cy="4.35" r=".95"/><path d="M3.72 6.5h1.56v6.05H3.72zM6.9 6.5h1.5v.86c.33-.6.95-1 1.83-1 1.33 0 2.15.86 2.15 2.42v3.77h-1.56V9.14c0-.83-.35-1.28-1.05-1.28-.74 0-1.21.5-1.21 1.33v3.36H6.9z"/></svg>LinkedIn</a></div>
+</footer>
+
+<script>
+/* ── Formspree endpoint ───────────────────────────────────────────────
+   Replace FORM_ID with the ID Formspree gives you (Forms → your form →
+   the address looks like https://formspree.io/f/abcdwxyz).            */
+const FORMSPREE_ID = "mnpnqyvz";
+
+(() => {
+  const form = document.getElementById('enquiry');
+  const out = document.getElementById('f-msg-out');
+  const btn = document.getElementById('f-submit');
+  const say = (text, kind) => { out.textContent = text; out.className = 'form-msg ' + kind; out.hidden = false; };
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    if (FORMSPREE_ID === 'FORM_ID') {
+      say('The form is not connected yet. Please email info@depthvolt.com in the meantime.', 'bad');
+      return;
+    }
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      const res = await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+        method: 'POST',
+        headers: {'Accept': 'application/json'},
+        body: new FormData(form)
+      });
+      if (res.ok) {
+        form.querySelector('.fields').hidden = true;
+        form.querySelector('.consent').hidden = true;
+        btn.hidden = true;
+        say('Thank you — your enquiry is with us. We reply within two working days, from info@depthvolt.com.', 'ok');
+      } else {
+        const raw = await res.text().catch(() => '');
+        let data = {}; try { data = JSON.parse(raw); } catch (_) {}
+        const detail = data.errors?.[0]?.message || data.error || raw.slice(0, 160) || 'no detail';
+        console.log('[DepthVolt form] HTTP ' + res.status + ' - ' + raw);
+        say('Error ' + res.status + ': ' + detail + ' - please email info@depthvolt.com instead.', 'bad');
+        btn.disabled = false; btn.textContent = 'Request a site assessment';
+      }
+    } catch (err) {
+      say('No connection to the server. Please email info@depthvolt.com instead.', 'bad');
+      btn.disabled = false; btn.textContent = 'Request a site assessment';
+    }
+  });
+})();
+
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- HERO FLOW FIELD ---------- */
+  const cv = document.getElementById('flow');
+  const ctx = cv.getContext('2d');
+  let W = 0, H = 0, dpr = 1, parts = [], vortices = [];
+  function size() {
+    const r = cv.getBoundingClientRect();
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    W = r.width; H = r.height;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const phone = W < 760;
+    // on phones the cluster sits in the empty band at the bottom of the hero
+    const cx = phone ? W * 0.5 : (W > 900 ? W * 0.74 : W * 0.7);
+    const cy = phone ? H - Math.min(110, H * 0.16) : H * 0.52;
+    const g = phone ? Math.min(W * 0.17, 62) : Math.min(W, H) * 0.11;
+    vortices = [[cx - g, cy - g], [cx + g, cy - g], [cx - g, cy + g], [cx + g, cy + g]].map(([x, y]) => ({x, y, r: g * 0.95}));
+    const n = Math.round(Math.min(phone ? 420 : 1400, W * H / (phone ? 1600 : 900)));
+    parts = Array.from({length: n}, () => spawn(true));
+    ctx.fillStyle = '#020A10'; ctx.fillRect(0, 0, W, H);
+  }
+  function spawn(anywhere) {
+    return {x: anywhere ? Math.random() * W : -10, y: Math.random() * H, s: 0.6 + Math.random() * 0.9, life: 0};
+  }
+  let t = 0;
+  function step() {
+    t += 0.004;
+    ctx.fillStyle = 'rgba(2,10,16,0.055)';
+    ctx.fillRect(0, 0, W, H);
+    for (const p of parts) {
+      let vx = 1.1 * p.s, vy = Math.sin(p.x * 0.004 + t * 3 + p.y * 0.002) * 0.35;
+      let heat = 0;
+      for (const v of vortices) {
+        const dx = p.x - v.x, dy = p.y - v.y, d2 = dx * dx + dy * dy, R = v.r * 2.2;
+        if (d2 < R * R) {
+          const d = Math.sqrt(d2) + 0.001, k = Math.pow(1 - d / R, 2);
+          vx += (-dy / d) * 3.4 * k - (dx / d) * 0.4 * k;
+          vy += (dx / d) * 3.4 * k - (dy / d) * 0.4 * k;
+          heat = Math.max(heat, k);
+        }
+      }
+      const nx = p.x + vx, ny = p.y + vy;
+      ctx.strokeStyle = heat > 0.35 ? `rgba(255,181,71,${0.25 + heat * 0.5})` : `rgba(70,217,204,${0.30 + p.s * 0.3})`;
+      ctx.lineWidth = heat > 0.35 ? 1.2 : 0.9;
+      ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(nx, ny); ctx.stroke();
+      p.x = nx; p.y = ny; p.life++;
+      if (p.x > W + 10 || p.y < -10 || p.y > H + 10 || p.life > 900) Object.assign(p, spawn(false));
+    }
+    // turbine housings
+    for (const v of vortices) {
+      ctx.strokeStyle = 'rgba(228,241,240,0.22)';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(v.x, v.y, v.r * 0.42, 0, Math.PI * 2); ctx.stroke();
+      ctx.strokeStyle = 'rgba(255,181,71,0.7)';
+      ctx.lineWidth = 1.6;
+      ctx.beginPath(); ctx.arc(v.x, v.y, v.r * 0.42, t * 12, t * 12 + 1.1); ctx.stroke();
+      ctx.fillStyle = 'rgba(228,241,240,0.9)';
+      ctx.beginPath(); ctx.arc(v.x, v.y, 2, 0, Math.PI * 2); ctx.fill();
+    }
+    if (!reduce) requestAnimationFrame(step);
+  }
+  size();
+  if (reduce) { for (let i = 0; i < 160; i++) step(); } else requestAnimationFrame(step);
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { size(); drawField(); }, 150); });
+
+  /* ---------- OUTPUT CONSOLE ---------- */
+  const spd = document.getElementById('spd');
+  const fmt = (n, d = 0) => n.toLocaleString('en-US', {minimumFractionDigits: d, maximumFractionDigits: d});
+  function calc() {
+    const v = parseFloat(spd.value);
+    const kw = 250 * Math.pow(v / 1.2, 3);
+    document.getElementById('spdVal').textContent = v.toFixed(2);
+    document.getElementById('oUnit').textContent = fmt(kw);
+    document.getElementById('oCl').textContent = fmt(kw * 4 / 1000, 2);
+    document.getElementById('oYr').textContent = fmt(Math.round(kw * 4 * 8760 * 0.9 / 1000 / 10) * 10);
+    document.getElementById('bUnit').style.width = (kw / 250 * 100) + '%';
+    spd.style.setProperty('--p', ((v - 0.3) / 0.9 * 100) + '%');
+    const cl = document.getElementById('dvCluster');
+    if (cl) cl.textContent = (kw * 4 / 1000).toFixed(2);
+    if (window.dvSetRate) window.dvSetRate(v);
+  }
+  spd.addEventListener('input', calc); calc();
+
+
+  /* ---------- LIVE CROSS-SECTION ---------- */
+  (() => {
+    const host = document.getElementById('dvParts');
+    if (!host) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const lanes = [
+      ['dvp0',14,1],['dvp1',15,1],['dvp2',16,1],['dvp3',17,1],
+      ['dvp4',17,1],['dvp5',16,1],['dvp6',15,1],['dvp7',14,1],
+      ['dvp8',10,0],['dvp9',10,0],['dvp10',9,0]
+    ];
+    const parts = [];
+
+    function sample(path) {
+      const len = path.getTotalLength(), step = 3, pts = [];
+      for (let d = 0; d <= len; d += step) { const p = path.getPointAtLength(d); pts.push(p.x, p.y); }
+      return { pts, n: pts.length / 2, step };
+    }
+    lanes.forEach(([id, n, captured]) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const tab = sample(el);
+      for (let i = 0; i < n; i++) {
+        const l = document.createElementNS(NS, 'line');
+        l.setAttribute('stroke', '#46D9CC');
+        l.setAttribute('stroke-linecap', 'round');
+        l.setAttribute('stroke-width', captured ? 1.8 : 1.1);
+        l.setAttribute('opacity', captured ? .8 : .22);
+        host.appendChild(l);
+        parts.push({ el: l, tab, i: Math.random() * tab.n, captured });
+      }
+    });
+
+    /* continuity: the passage narrows from ~408 px of open mouth to ~104 px at the
+       throat, so the captured flow has to move roughly four times faster there. */
+    function speedAt(x) {
+      if (x < 296) return 1;
+      if (x < 520) return 1 + 2.9 * (x - 296) / 224;
+      if (x < 780) return 3.9;
+      if (x < 980) return 3.9 - 2.4 * (x - 780) / 200;
+      return 1.4;
+    }
+
+    let rate = 1;                       // set by the velocity slider
+    window.dvSetRate = v => { rate = Math.max(.25, v / 0.9); };
+
+    let running = false, last = 0;
+    function frame(now) {
+      if (!running) return;
+      const dt = Math.min(.05, (now - last) / 1000); last = now;
+      const base = 88 * rate;
+      for (const p of parts) {
+        const t = p.tab, i = p.i | 0;
+        const x = t.pts[i * 2], y = t.pts[i * 2 + 1];
+        const f = p.captured ? speedAt(x) : 1;
+        const back = Math.max(1, Math.round(3 + f * 3.4));
+        const j = Math.max(0, i - back);
+        p.el.setAttribute('x1', t.pts[j * 2]); p.el.setAttribute('y1', t.pts[j * 2 + 1]);
+        p.el.setAttribute('x2', x);            p.el.setAttribute('y2', y);
+        if (p.captured) {
+          const fade = x > 820 ? Math.max(.16, 1 - (x - 820) / 420) : 1;
+          p.el.setAttribute('opacity', Math.min(.95, (.38 + f * .15) * fade));
+        }
+        p.i += (base * f * dt) / t.step;
+        if (p.i >= t.n) p.i -= t.n;
+      }
+      requestAnimationFrame(frame);
+    }
+    function place() {
+      for (const p of parts) {
+        const t = p.tab, i = p.i | 0, j = Math.max(0, i - 5);
+        p.el.setAttribute('x1', t.pts[j * 2]); p.el.setAttribute('y1', t.pts[j * 2 + 1]);
+        p.el.setAttribute('x2', t.pts[i * 2]); p.el.setAttribute('y2', t.pts[i * 2 + 1]);
+      }
+    }
+    place();
+
+    if (!reduce) {
+      /* only run while the figure is actually on screen */
+      const fig = host.closest('.diagram');
+      new IntersectionObserver(es => {
+        for (const e of es) {
+          if (e.isIntersecting && !running) {
+            running = true; last = performance.now(); requestAnimationFrame(frame);
+          } else if (!e.isIntersecting) {
+            running = false;
+          }
+        }
+      }, { rootMargin: '120px' }).observe(fig);
+    }
+  })();
+
+  /* ---------- SCALE ---------- */
+  const scales = [
+    {n: 1, mw: '0.25', unit: 'MW', title: 'Single turbine', text: 'The standard 250 kW building block, anchored to the seabed at 50–150 m.', y: '2.19 GWh / year', net: '~1.97 GWh / year'},
+    {n: 4, mw: '1', unit: 'MW', title: 'Cluster', text: 'Four units share one foundation and export cable — enough for a resort island or a desalination plant.', y: '8.76 GWh / year', net: '~7.9 GWh / year'},
+    {n: 48, mw: '12', unit: 'MW', title: 'Utility array', text: 'The size of our installed Philippines project — a port, a city district or an island grid.', y: '105 GWh / year', net: '~94.6 GWh / year'},
+    {n: 2000, mw: '500', unit: 'MW', title: 'National baseload', text: "A large-scale ocean-current field designed to deliver continuous power to a national grid — the scale envisioned for the Congo-Brazzaville programme.", y: '4.38 TWh / year', net: '~3.94 TWh / year'}
+  ];
+  const field = document.getElementById('field');
+  const fx = field.getContext('2d');
+  let cur = 3;
+  function drawField() {
+    const r = field.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
+    field.width = r.width * d; field.height = r.height * d;
+    fx.setTransform(d, 0, 0, d, 0, 0);
+    const w = r.width, h = r.height, n = scales[cur].n;
+    fx.clearRect(0, 0, w, h);
+    // current streaks
+    fx.strokeStyle = 'rgba(70,217,204,0.10)'; fx.lineWidth = 1;
+    for (let y = 12; y < h; y += 14) { fx.beginPath(); fx.moveTo(0, y); fx.bezierCurveTo(w * .3, y + 4, w * .6, y - 4, w, y); fx.stroke(); }
+    const aspect = w / h;
+    const clusters = Math.ceil(n / 4);
+    let cols = Math.max(1, Math.round(Math.sqrt(clusters * aspect * 1.2)));
+    if (n <= 4) cols = 1;
+    const rows = Math.ceil(clusters / cols);
+    const pad = 24, cw = (w - pad * 2) / cols, ch = (h - pad * 2) / rows;
+    const cell = Math.min(cw, ch);
+    const ox = (w - cell * cols) / 2, oy = (h - cell * rows) / 2;
+    let drawn = 0;
+    for (let c = 0; c < clusters; c++) {
+      const col = c % cols, row = Math.floor(c / cols);
+      const cx = ox + col * cell + cell / 2 + (row % 2 ? cell * 0.25 : 0) * (cols > 1 ? 1 : 0);
+      const cy = oy + row * cell + cell / 2;
+      const k = Math.min(4, n - drawn);
+      const off = n === 1 ? 0 : cell * 0.2;
+      const rr = n === 1 ? cell * 0.22 : Math.max(1, cell * 0.14);
+      const pts = n === 1 ? [[0, 0]] : [[-off, -off], [off, -off], [-off, off], [off, off]];
+      for (let i = 0; i < k; i++) {
+        const [dx, dy] = pts[i];
+        fx.beginPath(); fx.arc(cx + dx, cy + dy, rr, 0, Math.PI * 2);
+        fx.fillStyle = 'rgba(70,217,204,0.18)'; fx.fill();
+        if (rr > 3) { fx.strokeStyle = '#46D9CC'; fx.lineWidth = rr > 20 ? 2 : 1; fx.stroke(); }
+        if (rr > 10) { fx.beginPath(); fx.arc(cx + dx, cy + dy, rr * 0.6, -0.5, 1.2); fx.strokeStyle = '#FFB547'; fx.lineWidth = 2; fx.stroke(); }
+        fx.beginPath(); fx.arc(cx + dx, cy + dy, Math.max(0.8, rr * 0.18), 0, Math.PI * 2); fx.fillStyle = '#E4F1F0'; fx.fill();
+        drawn++;
+      }
+    }
+    fx.fillStyle = '#56727A'; fx.font = '11px "IBM Plex Mono", monospace';
+    fx.fillText('CURRENT →', 12, h - 10);
+    fx.textAlign = 'right'; fx.fillText(fmt(n) + (n === 1 ? ' UNIT' : ' UNITS'), w - 12, h - 10); fx.textAlign = 'left';
+  }
+  const big = document.getElementById('bigMW');
+  function setScale2(i) {
+    const s = scales[i];
+    big.innerHTML = s.mw + '<span>' + s.unit + '</span>';
+    cur = i;
+    document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-selected', String(+b.dataset.i === i)));
+    document.getElementById('sTitle').textContent = s.title;
+    document.getElementById('sText').textContent = s.text;
+    document.getElementById('sN').textContent = fmt(s.n);
+    document.getElementById('sY').textContent = s.y;
+    document.getElementById('sNet').textContent = s.net;
+    drawField();
+  }
+  const tabs = [...document.querySelectorAll('.tabs button')];
+  tabs.forEach(b => b.addEventListener('click', () => setScale2(+b.dataset.i)));
+  document.querySelector('.tabs').addEventListener('keydown', e => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const i = (cur + (e.key === 'ArrowRight' ? 1 : 3)) % 4; setScale2(i); tabs[i].focus();
+  });
+  setScale2(3);
+
+  /* ---------- MAP ---------- */
+  const NS = 'http://www.w3.org/2000/svg';
+  const L0 = -5, L1 = 135, T = 45, B = -20, MW = 1000, MH = 440;
+  const X = lon => (lon - L0) / (L1 - L0) * MW, Y = lat => (T - lat) / (T - B) * MH;
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; };
+  const grat = document.getElementById('grat'), gl = document.getElementById('gratLabels');
+  for (let lon = 0; lon <= 135; lon += 15) { el('line', {x1: X(lon), x2: X(lon), y1: 0, y2: MH}, grat); el('text', {x: X(lon) + 4, y: MH - 8}, gl).textContent = lon + '°E'; }
+  for (let lat = -15; lat <= 45; lat += 15) {
+    const l = el('line', {x1: 0, x2: MW, y1: Y(lat), y2: Y(lat)}, grat);
+    if (lat === 0) { l.setAttribute('stroke', 'rgba(70,217,204,.35)'); l.setAttribute('stroke-dasharray', '4 6'); }
+    el('text', {x: 6, y: Y(lat) - 5}, gl).textContent = lat === 0 ? 'EQUATOR' : Math.abs(lat) + (lat > 0 ? '°N' : '°S');
+  }
+  const sites = [
+    {n: 'Philippines · 12 MW', lon: 122, lat: 12, c: '#46D9CC', dx: -12, a: 'end'},
+    {n: 'Malta · 3 MW', lon: 14.4, lat: 35.9, c: '#FFB547', dx: 12, a: 'start'},
+    {n: 'Seychelles · 5 MW', lon: 55.5, lat: -4.6, c: '#E4F1F0', dx: 12, a: 'start'},
+    {n: 'Congo-Brazzaville · 500 MW', lon: 12, lat: -4.3, c: '#E4F1F0', dx: 12, a: 'start', big: true},
+    {n: 'Maldives · next', lon: 73.2, lat: 3.2, c: '#8BA8AB', dx: 12, a: 'start', hollow: true},
+    {n: 'UAE ports · next', lon: 55.3, lat: 25.2, c: '#8BA8AB', dx: 12, a: 'start', hollow: true},
+    {n: 'Singapore · HQ', lon: 103.8, lat: 1.3, c: '#46D9CC', dx: 12, a: 'start', hq: true}
+  ];
+  const pins = document.getElementById('pins');
+  // supply lines from HQ
+  const hq = sites.find(s => s.hq);
+  sites.filter(s => !s.hq).forEach(s => {
+    const x1 = X(hq.lon), y1 = Y(hq.lat), x2 = X(s.lon), y2 = Y(s.lat);
+    const mx = (x1 + x2) / 2, my = Math.min(y1, y2) - 60;
+    el('path', {d: `M${x1} ${y1} Q${mx} ${my} ${x2} ${y2}`, fill: 'none', stroke: 'rgba(70,217,204,.22)', 'stroke-width': 1, class: 'flowline'}, pins);
+  });
+  sites.forEach(s => {
+    const x = X(s.lon), y = Y(s.lat);
+    const r = s.big ? 9 : s.hq ? 5 : 5;
+    if (!s.hollow) el('circle', {cx: x, cy: y, r: r, fill: 'none', stroke: s.c, 'stroke-width': 1.2, class: 'ping'}, pins);
+    el('circle', {cx: x, cy: y, r: r, fill: s.hollow ? '#051A24' : s.c, stroke: s.c, 'stroke-width': 1.5}, pins);
+    if (s.hq) el('rect', {x: x - 9, y: y - 9, width: 18, height: 18, fill: 'none', stroke: s.c}, pins);
+    const tx = el('text', {x: x + s.dx, y: y + 4, fill: s.c, 'text-anchor': s.a}, pins);
+    tx.textContent = s.n;
+  });
+})();
+</script>
+</body>
+</html>
