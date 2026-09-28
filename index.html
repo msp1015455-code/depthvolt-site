@@ -416,7 +416,7 @@ footer .social svg{flex:none}
       <p class="lede">DepthVolt does not claim to beat the power curve of a turbine. It changes the hydraulic boundary conditions the conversion mechanism sees: a large intake captures a much greater flow area, and the housing concentrates that flow before it reaches the generator.</p>
     </div>
 
-    <div class="diagram flowfig" role="img" aria-label="Animated cross-section: the ocean current enters a wide intake, accelerates through a narrowing throat, drives an enclosed direct-drive generator, and the power of four units is collected at a subsea junction and exported to shore.">
+    <div class="diagram flowfig" role="img" aria-label="Animated cross-section: the ocean current enters a wide intake, accelerates through a narrowing throat, drives an enclosed direct-drive generator, and the output of the surrounding units is collected at a subsea junction and exported to shore.">
       <svg viewBox="0 0 1240 640" role="img" aria-label="Animated cross-section: ocean current enters a wide intake, accelerates through a narrowing throat, drives an enclosed direct-drive generator, and power travels by subsea cable to a seabed junction box and on to shore.">
       <defs>
         <linearGradient id="dvHull" x1="0" x2="1"><stop offset="0" stop-color="#0E3746"/><stop offset="1" stop-color="#08222E"/></linearGradient>
@@ -499,37 +499,33 @@ footer .social svg{flex:none}
       <text x="135" y="612" font-family="IBM Plex Mono, monospace" font-size="11" fill="#8BA8AB" text-anchor="middle">ANCHOR</text>
 
       <!-- export cable: generator -> junction box -->
-      <path d="M752 306 C822 330 840 420 884 468" fill="none" stroke="#3A2C12" stroke-width="4"/>
-      <path class="dvCable" d="M752 306 C822 330 840 420 884 468" fill="none" stroke="#FFB547" stroke-width="3" stroke-linecap="round"/>
+      <path d="M752 306 C822 330 840 426 884 478" fill="none" stroke="#3A2C12" stroke-width="4"/>
+      <path class="dvCable" d="M752 306 C822 330 840 426 884 478" fill="none" stroke="#FFB547" stroke-width="3" stroke-linecap="round"/>
 
       <!-- feeds from the neighbouring units, running along the floor -->
-      <path d="M-40 572 C300 570 640 566 862 536" fill="none" stroke="#3A2C12" stroke-width="3" opacity=".7"/>
-      <path class="dvCable" d="M-40 572 C300 570 640 566 862 536" fill="none" stroke="#FFB547" stroke-width="2" stroke-linecap="round" opacity=".45"/>
-      <path d="M-40 564 C300 562 640 556 862 522" fill="none" stroke="#3A2C12" stroke-width="3" opacity=".55"/>
-      <path class="dvCable" d="M-40 564 C300 562 640 556 862 522" fill="none" stroke="#FFB547" stroke-width="2" stroke-linecap="round" opacity=".34"/>
+      <path d="M-40 572 C300 570 640 566 884 506" fill="none" stroke="#3A2C12" stroke-width="3" opacity=".7"/>
+      <path class="dvCable" d="M-40 572 C300 570 640 566 884 506" fill="none" stroke="#FFB547" stroke-width="2" stroke-linecap="round" opacity=".45"/>
+      <path d="M-40 564 C300 562 640 556 884 496" fill="none" stroke="#3A2C12" stroke-width="3" opacity=".55"/>
+      <path class="dvCable" d="M-40 564 C300 562 640 556 884 496" fill="none" stroke="#FFB547" stroke-width="2" stroke-linecap="round" opacity=".34"/>
       <text x="470" y="608" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.3" fill="#3B565E">FROM ADJACENT UNITS →</text>
 
       <!-- cluster junction: where the array's output is collected -->
-      <rect x="884" y="432" width="178" height="116" rx="4" fill="#0A2B38" stroke="#2A8F88" stroke-width="1.6"/>
-      <rect x="884" y="432" width="178" height="28" rx="4" fill="#0E3746"/>
-      <text x="898" y="451" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5" fill="#8BA8AB">CLUSTER JUNCTION</text>
-      <circle cx="1026" cy="446" r="3.6" fill="#46D9CC" class="dvLed"/>
-      <circle cx="1042" cy="446" r="3.6" fill="#FFB547" class="dvLed b"/>
-      <text x="898" y="486" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.4" fill="#56727A">COLLECTED · 4 UNITS</text>
-      <text id="dvCluster" x="898" y="518" font-family="Unbounded, sans-serif" font-size="26" font-weight="300" fill="#FFB547">0.60</text>
-      <text x="976" y="518" font-family="IBM Plex Mono, monospace" font-size="12" fill="#8BA8AB">MW</text>
-      <line x1="898" y1="530" x2="1048" y2="530" stroke="#2A8F88" stroke-width="1" opacity=".5"/>
-      <g fill="#46D9CC" opacity=".8">
-        <rect x="898" y="536" width="12" height="3" rx="1.5"/>
-        <rect x="914" y="536" width="12" height="3" rx="1.5"/>
-        <rect x="930" y="536" width="12" height="3" rx="1.5"/>
-        <rect x="946" y="536" width="12" height="3" rx="1.5"/>
+      <rect x="884" y="459" width="168" height="54" rx="4" fill="#0A2B38" stroke="#2A8F88" stroke-width="1.6"/>
+      <rect x="884" y="459" width="168" height="26" rx="4" fill="#0E3746"/>
+      <text x="896" y="477" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.3" fill="#8BA8AB">CLUSTER JUNCTION</text>
+      <circle cx="1022" cy="472" r="3.4" fill="#46D9CC" class="dvLed"/>
+      <circle cx="1036" cy="472" r="3.4" fill="#FFB547" class="dvLed b"/>
+      <g fill="#46D9CC" opacity=".75">
+        <rect x="924" y="497" width="17" height="3" rx="1.5"/>
+        <rect x="948" y="497" width="17" height="3" rx="1.5"/>
+        <rect x="972" y="497" width="17" height="3" rx="1.5"/>
+        <rect x="996" y="497" width="17" height="3" rx="1.5"/>
       </g>
 
       <!-- aggregated export to shore -->
-      <path d="M1062 492 C1120 498 1170 510 1240 516" fill="none" stroke="#3A2C12" stroke-width="7"/>
-      <path class="dvCable" d="M1062 492 C1120 498 1170 510 1240 516" fill="none" stroke="#FFB547" stroke-width="5" stroke-linecap="round"/>
-      <text x="1076" y="552" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.1" fill="#FFB547">EXPORT TO SHORE →</text>
+      <path d="M1052 495 C1110 500 1172 508 1240 514" fill="none" stroke="#3A2C12" stroke-width="7"/>
+      <path class="dvCable" d="M1052 495 C1110 500 1172 508 1240 514" fill="none" stroke="#FFB547" stroke-width="5" stroke-linecap="round"/>
+      <text x="1068" y="546" font-family="IBM Plex Mono, monospace" font-size="11" letter-spacing="1.1" fill="#FFB547">EXPORT TO SHORE →</text>
 
       <!-- stage labels -->
       <g font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.2">
@@ -1063,8 +1059,6 @@ const FORMSPREE_ID = "mnpnqyvz";
     document.getElementById('oYr').textContent = fmt(Math.round(kw * 4 * 8760 * 0.9 / 1000 / 10) * 10);
     document.getElementById('bUnit').style.width = (kw / 250 * 100) + '%';
     spd.style.setProperty('--p', ((v - 0.3) / 0.9 * 100) + '%');
-    const cl = document.getElementById('dvCluster');
-    if (cl) cl.textContent = (kw * 4 / 1000).toFixed(2);
     if (window.dvSetRate) window.dvSetRate(v);
   }
   spd.addEventListener('input', calc); calc();
