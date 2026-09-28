@@ -132,7 +132,20 @@ section{padding-block:clamp(72px,10vw,140px);border-bottom:1px solid var(--line)
 .tech{background:linear-gradient(180deg,var(--abyss),var(--deep) 60%,var(--abyss))}
 .diagram{border:1px solid var(--line);background:rgba(5,26,36,.6);position:relative;overflow-x:auto}
 .diagram svg{display:block;width:100%;min-width:640px;height:auto}
-.diagram.flowfig svg{min-width:680px}
+/* merged figure: drawing + pinned velocity reading + slider, one frame */
+.flowfig{position:relative;border:1px solid var(--line);background:rgba(5,26,36,.6)}
+.figscroll{overflow-x:auto;overscroll-behavior-x:contain}
+.figscroll svg{display:block;width:100%;min-width:680px;height:auto}
+.velchip{position:absolute;top:0;left:0;padding:16px clamp(20px,3vw,34px) 20px 16px;pointer-events:none;
+  background:radial-gradient(130% 150% at 0% 0%,rgba(2,10,16,.95) 0%,rgba(2,10,16,.74) 46%,rgba(2,10,16,0) 80%)}
+.velchip .vk{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--current)}
+.velchip .vs{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--faint);margin-top:3px}
+.velchip .vv{display:block;font-family:var(--display);font-weight:300;font-size:clamp(32px,4.2vw,50px);line-height:1;margin-top:12px;font-variant-numeric:tabular-nums}
+.velchip .vv small{font-family:var(--body);font-size:.32em;color:var(--muted);margin-left:7px;font-weight:300}
+.figctl{border-top:1px solid var(--line);padding:14px clamp(16px,2.4vw,28px) 12px;display:flex;align-items:center;gap:clamp(14px,2vw,26px)}
+.figctl .clab{flex:none;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.figctl .ctrack{flex:1;min-width:0}
+@media (max-width:620px){.figctl{display:block}.figctl .clab{margin-bottom:2px}}
 .dvSpin{transform-origin:600px 300px;animation:dvSpin 2.6s linear infinite}
 .dvSpin2{transform-origin:600px 300px;animation:dvSpin 4.4s linear infinite reverse}
 @keyframes dvSpin{to{transform:rotate(360deg)}}
@@ -155,11 +168,6 @@ section{padding-block:clamp(72px,10vw,140px);border-bottom:1px solid var(--line)
 .stage p{font-size:15px;color:var(--muted)}
 @media (max-width:760px){.stages{grid-template-columns:1fr}}
 
-.console{margin-top:clamp(48px,7vw,88px);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.console > div{background:var(--abyss);padding:clamp(20px,3vw,36px)}
-.console label{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.speed{font-family:var(--display);font-size:clamp(44px,6vw,72px);font-weight:300;line-height:1;margin:14px 0 22px;font-variant-numeric:tabular-nums}
-.speed small{font-size:.3em;color:var(--muted);margin-left:6px}
 input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:28px;background:transparent;cursor:pointer}
 input[type=range]::-webkit-slider-runnable-track{height:2px;background:linear-gradient(90deg,var(--current) var(--p,50%),var(--line-strong) var(--p,50%))}
 input[type=range]::-moz-range-track{height:2px;background:var(--line-strong)}
@@ -167,16 +175,9 @@ input[type=range]::-moz-range-progress{height:2px;background:var(--current)}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-8px;border-radius:50%;background:var(--abyss);border:2px solid var(--current);box-shadow:0 0 16px rgba(70,217,204,.6)}
 input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--abyss);border:2px solid var(--current)}
 .scale-ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:4px}
-.out{display:grid;gap:22px}
-.out dt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
-.out dd{margin:4px 0 0;font-family:var(--display);font-size:clamp(26px,3vw,36px);font-weight:500;color:var(--volt);font-variant-numeric:tabular-nums}
-.out dd small{font-size:.45em;color:var(--muted);font-weight:300;margin-left:6px}
-.bar{height:4px;background:var(--line);margin-top:10px}
-.bar i{display:block;height:100%;background:var(--volt);box-shadow:0 0 12px rgba(255,181,71,.5);transition:width .2s}
 .note{font-size:12px;color:var(--faint);margin-top:18px}
 .swipe{display:none;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:10px}
 @media (max-width:760px){.swipe{display:block}}
-@media (max-width:860px){.console{grid-template-columns:1fr}}
 
 .thesis{margin-top:clamp(28px,4vw,44px);font-family:var(--display);font-weight:300;font-size:clamp(20px,2.4vw,30px);line-height:1.35;letter-spacing:-.02em;color:var(--text);max-width:34ch;border-left:2px solid var(--current);padding-left:clamp(16px,2vw,28px)}
 .diagcap{margin-top:14px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--faint)}
@@ -416,7 +417,8 @@ footer .social svg{flex:none}
       <p class="lede">DepthVolt does not claim to beat the power curve of a turbine. It changes the hydraulic boundary conditions the conversion mechanism sees: a large intake captures a much greater flow area, and the housing concentrates that flow before it reaches the generator.</p>
     </div>
 
-    <div class="diagram flowfig" role="img" aria-label="Animated cross-section: the ocean current enters a wide intake, accelerates through a narrowing throat, drives an enclosed direct-drive generator, and the output of the surrounding units is collected at a subsea junction and exported to shore.">
+    <div class="flowfig">
+      <div class="figscroll" role="img" aria-label="Animated cross-section: the ocean current enters a wide intake, accelerates through a narrowing throat, drives an enclosed direct-drive generator, and the output of the surrounding units is collected at a subsea junction and exported to shore.">
       <svg viewBox="0 0 1240 640" role="img" aria-label="Animated cross-section: ocean current enters a wide intake, accelerates through a narrowing throat, drives an enclosed direct-drive generator, and power travels by subsea cable to a seabed junction box and on to shore.">
       <defs>
         <linearGradient id="dvHull" x1="0" x2="1"><stop offset="0" stop-color="#0E3746"/><stop offset="1" stop-color="#08222E"/></linearGradient>
@@ -510,17 +512,14 @@ footer .social svg{flex:none}
       <text x="470" y="608" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.3" fill="#3B565E">FROM ADJACENT UNITS →</text>
 
       <!-- cluster junction: where the array's output is collected -->
-      <rect x="884" y="459" width="168" height="54" rx="4" fill="#0A2B38" stroke="#2A8F88" stroke-width="1.6"/>
+      <rect x="884" y="459" width="168" height="74" rx="4" fill="#0A2B38" stroke="#2A8F88" stroke-width="1.6"/>
       <rect x="884" y="459" width="168" height="26" rx="4" fill="#0E3746"/>
       <text x="896" y="477" font-family="IBM Plex Mono, monospace" font-size="9.5" letter-spacing="1.3" fill="#8BA8AB">CLUSTER JUNCTION</text>
       <circle cx="1022" cy="472" r="3.4" fill="#46D9CC" class="dvLed"/>
       <circle cx="1036" cy="472" r="3.4" fill="#FFB547" class="dvLed b"/>
-      <g fill="#46D9CC" opacity=".75">
-        <rect x="924" y="497" width="17" height="3" rx="1.5"/>
-        <rect x="948" y="497" width="17" height="3" rx="1.5"/>
-        <rect x="972" y="497" width="17" height="3" rx="1.5"/>
-        <rect x="996" y="497" width="17" height="3" rx="1.5"/>
-      </g>
+      <text id="dvClKw" x="966" y="522" text-anchor="end" font-family="Unbounded, sans-serif" font-size="24" font-weight="300" fill="#FFB547">420</text>
+      <text x="972" y="522" font-family="IBM Plex Mono, monospace" font-size="12" fill="#8BA8AB">kW</text>
+      <text x="1040" y="522" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.2" fill="#56727A">4 UNITS</text>
 
       <!-- aggregated export to shore -->
       <path d="M1052 495 C1110 500 1172 508 1240 514" fill="none" stroke="#3A2C12" stroke-width="7"/>
@@ -529,8 +528,6 @@ footer .social svg{flex:none}
 
       <!-- stage labels -->
       <g font-family="IBM Plex Mono, monospace" font-size="12" letter-spacing="1.2">
-        <text x="26" y="40" fill="#46D9CC">① CURRENT IN · 0.3–1.2 m/s</text>
-        <text x="26" y="62" fill="#3B565E" font-size="11">OPEN OCEAN · ≥50 m</text>
         <text x="536" y="222" fill="#E4F1F0" text-anchor="middle">② FLOW CONCENTRATED</text>
         <text x="806" y="404" fill="#FFB547" text-anchor="end">③ DIRECT-DRIVE GENERATOR</text>
       </g>
@@ -538,9 +535,25 @@ footer .social svg{flex:none}
 
 
     </svg>
+      </div>
+
+      <div class="velchip">
+        <span class="vk">① Current in</span>
+        <span class="vs">OPEN OCEAN · ≥50 m</span>
+        <span class="vv"><span id="spdVal">0.90</span><small>m/s</small></span>
+      </div>
+
+      <div class="figctl">
+        <label class="clab" for="spd">Site current velocity</label>
+        <div class="ctrack">
+          <input id="spd" type="range" min="0.3" max="1.2" step="0.05" value="0.9" aria-describedby="spdNote">
+          <div class="scale-ticks"><span>0.3</span><span>0.6</span><span>0.9</span><span>1.2 m/s</span></div>
+        </div>
+      </div>
     </div>
 
-    <p class="diagcap">Schematic cross-section, driven by the velocity slider below. Proportions are illustrative.</p>
+    <p class="diagcap">Indicative annual cluster output <span id="oYr">3,330</span> MWh/yr · four turbines, ~90% availability. Proportions are illustrative.</p>
+    <p class="note" id="spdNote">Available kinetic power increases with the cube of current velocity. Figures are illustrative; actual output depends on site conditions, system configuration and validated resource-survey data.</p>
     <p class="swipe">Swipe the diagram sideways →</p>
 
     <p class="thesis">High-volume flow is concentrated through the generator, increasing usable energy density at the conversion point.</p>
@@ -551,20 +564,6 @@ footer .social svg{flex:none}
       <div class="stage"><div class="n">03 / Convert</div><h3>Direct-drive generation</h3><p>The enclosed rotor drives the generator directly, eliminating the need for a gearbox. No rotating blades are exposed to the marine environment, and the generated power is transmitted to shore via subsea cable.</p></div>
     </div>
 
-    <div class="console">
-      <div>
-        <label for="spd">Site current velocity</label>
-        <div class="speed"><span id="spdVal">0.9</span><small>m/s</small></div>
-        <input id="spd" type="range" min="0.3" max="1.2" step="0.05" value="0.9" aria-describedby="spdNote">
-        <div class="scale-ticks"><span>0.3</span><span>0.6</span><span>0.9</span><span>1.2 m/s</span></div>
-        <p class="note" id="spdNote">Available kinetic power increases with the cube of current velocity. Figures are illustrative; actual output depends on site conditions, system configuration and validated resource-survey data.</p>
-      </div>
-      <div class="out">
-        <div><dt>Per turbine</dt><dd><span id="oUnit">105</span><small>kW</small></dd><div class="bar"><i id="bUnit" style="width:42%"></i></div></div>
-        <div><dt>Per cluster · 4 turbines</dt><dd><span id="oCl">0.42</span><small>MW</small></dd></div>
-        <div><dt>Indicative annual cluster output</dt><dd><span id="oYr">3,300</span><small>MWh/yr</small></dd></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1054,10 +1053,9 @@ const FORMSPREE_ID = "mnpnqyvz";
     const v = parseFloat(spd.value);
     const kw = 250 * Math.pow(v / 1.2, 3);
     document.getElementById('spdVal').textContent = v.toFixed(2);
-    document.getElementById('oUnit').textContent = fmt(kw);
-    document.getElementById('oCl').textContent = fmt(kw * 4 / 1000, 2);
     document.getElementById('oYr').textContent = fmt(Math.round(kw * 4 * 8760 * 0.9 / 1000 / 10) * 10);
-    document.getElementById('bUnit').style.width = (kw / 250 * 100) + '%';
+    const cl = document.getElementById('dvClKw');
+    if (cl) cl.textContent = fmt(kw * 4);
     spd.style.setProperty('--p', ((v - 0.3) / 0.9 * 100) + '%');
     if (window.dvSetRate) window.dvSetRate(v);
   }
@@ -1142,7 +1140,7 @@ const FORMSPREE_ID = "mnpnqyvz";
 
     if (!reduce) {
       /* only run while the figure is actually on screen */
-      const fig = host.closest('.diagram');
+      const fig = host.closest('.flowfig');
       new IntersectionObserver(es => {
         for (const e of es) {
           if (e.isIntersecting && !running) {
