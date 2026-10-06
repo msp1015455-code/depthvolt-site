@@ -637,7 +637,7 @@ footer .social svg{flex:none}
       </div>
       <div>
         <h3>Maintains nominal speed as current velocity increases</h3>
-        <p>The control loop continuously monitors generator RPM and regulates water flow as ocean-current velocity changes, maintaining the generator within its nominal operating range. Beyond the design envelope — around 1.4 m/s for the reference geometry — overspeed protection engages and the generator is held at its nominal rating.</p>
+        <p>The control loop continuously monitors generator RPM and diverts part of the available flow as ocean-current velocity changes, so that only a portion of the volume flow reaches the conversion path and the generator stays within its nominal operating range. The unit keeps generating throughout. Cut-off applies only in the extreme case where the maximum available diversion has already been applied and generator speed is still above its allowable range.</p>
       </div>
       <div>
         <h3>Self-cleaning and predictive maintenance</h3>
@@ -763,7 +763,7 @@ footer .social svg{flex:none}
     <div class="basis">
       <div class="label">Basis of figures</div>
       <ul>
-        <li>Each DepthVolt unit is rated at 250 kW, based on a design current velocity of 1.2 m/s.</li>
+        <li>Each DepthVolt unit has a design target operating point of 250 kW, to be validated by prototype measurement.</li>
         <li>Available kinetic power varies with the cube of current velocity.</li>
         <li>Continuous operation at rated output corresponds to a maximum annual generation of 8.76 GWh per MW.</li>
         <li>Applying ~90% availability for planned maintenance gives indicative annual generation of ~7.9 GWh per MW.</li>
@@ -777,8 +777,8 @@ footer .social svg{flex:none}
   <div class="wrap">
     <div class="head">
       <div class="label">Projects &amp; markets</div>
-      <h2>520 MW across three continents.</h2>
-      <p class="lede">Operational experience in Southeast Asia, with projects in development across the Mediterranean, Indian Ocean and Central Africa. The pipeline continues to expand into the Maldives, major ports and other high-demand coastal markets.</p>
+      <h2>Four projects across three continents.</h2>
+      <p class="lede">A development pipeline of about 1.9 GW across the Mediterranean, the Indian Ocean, Central Africa and South East Asia. Figures below show contracted or agreed capacity at the stage indicated, not installed capacity.</p>
     </div>
     <div class="map">
       <svg viewBox="0 0 1000 440" role="img" aria-label="Chart of project locations from the Mediterranean to the Philippines">
@@ -788,10 +788,10 @@ footer .social svg{flex:none}
       </svg>
     </div>
     <div class="projects">
-      <div class="proj"><div class="mw">12<small>MW</small></div><h3>Philippines</h3><span class="chip op">Installed</span></div>
-      <div class="proj"><div class="mw">3<small>MW</small></div><h3>Malta</h3><span class="chip dev">In development</span></div>
-      <div class="proj"><div class="mw">5<small>MW</small></div><h3>Seychelles</h3><span class="chip plan">Planned</span></div>
-      <div class="proj"><div class="mw">500<small>MW</small></div><h3>Congo-Brazzaville</h3><span class="chip plan">Planned</span></div>
+      <div class="proj"><div class="mw">100<small>MW</small></div><h3>Philippines</h3><span class="chip op">PPA agreed</span></div>
+      <div class="proj"><div class="mw">1,000<small>MW</small></div><h3>Maldives</h3><span class="chip dev">MOU &amp; draft PPA</span></div>
+      <div class="proj"><div class="mw">300<small>MW</small></div><h3>Malta</h3><span class="chip dev">Agreement signed</span></div>
+      <div class="proj"><div class="mw">500<small>MW</small></div><h3>Congo-Brazzaville</h3><span class="chip plan">MOU signed</span></div>
     </div>
     <p class="swipe">Swipe the chart sideways →</p>
   </div>
@@ -1156,7 +1156,7 @@ const FORMSPREE_ID = "mnpnqyvz";
 
   /* ---------- SCALE ---------- */
   const scales = [
-    {n: 1, mw: '0.25', unit: 'MW', title: 'Single turbine', text: 'The standard 250 kW building block, anchored to the seabed at 50–150 m.', y: '2.19 GWh / year', net: '~1.97 GWh / year'},
+    {n: 1, mw: '0.25', unit: 'MW', title: 'Single turbine', text: 'The standard building block, suspended at 50–150 m with its anchor resting on the seabed below.', y: '2.19 GWh / year', net: '~1.97 GWh / year'},
     {n: 4, mw: '1', unit: 'MW', title: 'Cluster', text: 'Four units share one foundation and export cable — enough for a resort island or a desalination plant.', y: '8.76 GWh / year', net: '~7.9 GWh / year'},
     {n: 48, mw: '12', unit: 'MW', title: 'Utility array', text: 'The size of our installed Philippines project — a port, a city district or an island grid.', y: '105 GWh / year', net: '~94.6 GWh / year'},
     {n: 2000, mw: '500', unit: 'MW', title: 'National baseload', text: "A large-scale ocean-current field designed to deliver continuous power to a national grid — the scale envisioned for the Congo-Brazzaville programme.", y: '4.38 TWh / year', net: '~3.94 TWh / year'}
@@ -1238,11 +1238,10 @@ const FORMSPREE_ID = "mnpnqyvz";
     el('text', {x: 6, y: Y(lat) - 5}, gl).textContent = lat === 0 ? 'EQUATOR' : Math.abs(lat) + (lat > 0 ? '°N' : '°S');
   }
   const sites = [
-    {n: 'Philippines · 12 MW', lon: 122, lat: 12, c: '#46D9CC', dx: -12, a: 'end'},
-    {n: 'Malta · 3 MW', lon: 14.4, lat: 35.9, c: '#FFB547', dx: 12, a: 'start'},
-    {n: 'Seychelles · 5 MW', lon: 55.5, lat: -4.6, c: '#E4F1F0', dx: 12, a: 'start'},
+    {n: 'Philippines · 100 MW', lon: 122, lat: 12, c: '#46D9CC', dx: -12, a: 'end'},
+    {n: 'Malta · 300 MW', lon: 14.4, lat: 35.9, c: '#FFB547', dx: 12, a: 'start'},
     {n: 'Congo-Brazzaville · 500 MW', lon: 12, lat: -4.3, c: '#E4F1F0', dx: 12, a: 'start', big: true},
-    {n: 'Maldives · next', lon: 73.2, lat: 3.2, c: '#8BA8AB', dx: 12, a: 'start', hollow: true},
+    {n: 'Maldives · 1,000 MW', lon: 73.2, lat: 3.2, c: '#46D9CC', dx: 12, a: 'start', big: true},
     {n: 'UAE ports · next', lon: 55.3, lat: 25.2, c: '#8BA8AB', dx: 12, a: 'start', hollow: true},
     {n: 'Singapore · HQ', lon: 103.8, lat: 1.3, c: '#46D9CC', dx: 12, a: 'start', hq: true}
   ];
