@@ -1016,13 +1016,15 @@ const FORMSPREE_ID = "mnpnqyvz";
       // keep the swirl clear of the headline: measure where the text actually ends
       const safe = headlineRight() + Math.max(64, W * 0.035);
       const room = Math.max(0, W - safe);
-      // a vortex disturbs the field out to about 3.1 x g, so the cluster needs 6.2 x g of room
-      g = Math.max(44, Math.min(Math.min(W, H) * 0.11, room / 6.2));
+      // a vortex disturbs the field out to about 3.1 x g, so the cluster needs 6.2 x g of room.
+      // three independent caps, smallest wins: the hero's height, its width, and the room
+      // left of nothing — the gap between the headline and the right edge.
+      g = Math.max(44, Math.min(H * 0.14, W * 0.08, room / 6.2));
       cx = Math.max(W * 0.70, Math.min(safe + 3.1 * g, W - 3.1 * g));
       cy = H * 0.54;
     }
     vortices = [[cx - g, cy - g], [cx + g, cy - g], [cx - g, cy + g], [cx + g, cy + g]].map(([x, y]) => ({x, y, r: g * 0.95}));
-    const n = Math.round(Math.min(phone ? 420 : 1400, W * H / (phone ? 1600 : 900)));
+    const n = Math.round(Math.min(phone ? 420 : 1900, W * H / (phone ? 1600 : 820)));
     parts = Array.from({length: n}, () => spawn(true));
     ctx.fillStyle = '#020A10'; ctx.fillRect(0, 0, W, H);
   }
