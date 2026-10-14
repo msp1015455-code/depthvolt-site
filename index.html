@@ -19,6 +19,13 @@
 <meta name="twitter:description" content="Bladeless subsea turbines delivering baseload renewable electricity for utilities, governments and ports.">
 <meta name="twitter:image" content="https://depthvolt.com/og.png">
 <meta name="robots" content="index,follow,max-image-preview:large">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7X9LLX7PFC"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+try{if(localStorage.getItem('dv-consent')==='granted'){gtag('consent','update',{analytics_storage:'granted'})}}catch(e){}
+gtag('js',new Date());gtag('config','G-7X9LLX7PFC',{anonymize_ip:true});
+</script>
 <link rel="canonical" href="https://depthvolt.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%23020A10'/%3E%3Ccircle cx='14' cy='14' r='12' fill='none' stroke='%2346D9CC' stroke-width='1.5'/%3E%3Cpath d='M15.5 6 11 15h4l-2.5 7' fill='none' stroke='%23FFB547' stroke-width='2'/%3E%3C/svg%3E">
 <title>DepthVolt — baseload power from deep ocean currents</title>
@@ -340,6 +347,15 @@ footer .social svg{flex:none}
   *,*::before,*::after{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
 }
+
+.cookiebar{position:fixed;left:16px;bottom:16px;z-index:60;max-width:420px;background:#061C25;border:1px solid var(--line);border-left:3px solid var(--current);padding:18px 20px;display:none;box-shadow:0 18px 50px rgba(0,0,0,.55)}
+.cookiebar.on{display:block}
+.cookiebar p{font-size:14px;line-height:1.5;color:#B5CCCD;margin:0 0 14px}
+.cookiebar .row{display:flex;gap:10px;flex-wrap:wrap}
+.cookiebar button{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:2px;cursor:pointer;border:1px solid var(--current)}
+.cookiebar .yes{background:var(--current);color:var(--abyss)}
+.cookiebar .no{background:transparent;color:var(--current)}
+@media(max-width:560px){.cookiebar{left:12px;right:12px;bottom:12px;max-width:none}}
 </style>
 </head>
 <body>
@@ -977,6 +993,7 @@ const FORMSPREE_ID = "mnpnqyvz";
         form.querySelector('.consent').hidden = true;
         btn.hidden = true;
         say('Thank you — your enquiry is with us. We reply within two working days, from info@depthvolt.com.', 'ok');
+        if (window.gtag) gtag('event','generate_lead',{form_name:'site_enquiry'});
       } else {
         const raw = await res.text().catch(() => '');
         let data = {}; try { data = JSON.parse(raw); } catch (_) {}
@@ -1299,6 +1316,25 @@ const FORMSPREE_ID = "mnpnqyvz";
     const tx = el('text', {x: x + s.dx, y: y + 4, fill: s.c, 'text-anchor': s.a}, pins);
     tx.textContent = s.n;
   });
+})();
+</script>
+
+<div class="cookiebar" id="cookiebar" role="dialog" aria-label="Analytics cookies">
+  <p>We use analytics cookies to understand how this site is used. No advertising, no tracking across other sites.</p>
+  <div class="row"><button class="yes" id="ckYes">Accept</button><button class="no" id="ckNo">Decline</button></div>
+</div>
+<script>
+(() => {
+  const bar = document.getElementById('cookiebar');
+  let saved = null; try { saved = localStorage.getItem('dv-consent'); } catch (e) {}
+  if (!saved) bar.classList.add('on');
+  const decide = v => {
+    try { localStorage.setItem('dv-consent', v); } catch (e) {}
+    if (v === 'granted' && window.gtag) gtag('consent','update',{analytics_storage:'granted'});
+    bar.classList.remove('on');
+  };
+  document.getElementById('ckYes').addEventListener('click', () => decide('granted'));
+  document.getElementById('ckNo').addEventListener('click', () => decide('denied'));
 })();
 </script>
 </body>
